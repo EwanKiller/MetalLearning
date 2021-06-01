@@ -20,7 +20,7 @@
     [super viewDidLoad];
 
     _view = (MTKView *)self.view;
-    
+
 
     _view.device = MTLCreateSystemDefaultDevice();
     _view.backgroundColor = UIColor.blackColor;
@@ -37,7 +37,67 @@
     [_renderer mtkView:_view drawableSizeWillChange:_view.bounds.size];
 
     _view.delegate = _renderer;
+    
+    [self addMoveButton];
+
 }
+
+- (void)addMoveButton
+{
+    // forward button
+    UIButton* buttonForwards = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    buttonForwards.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    [buttonForwards setFrame:CGRectMake(120, 350, 80, 60)];
+    [buttonForwards setTitle:@"forward" forState:UIControlStateNormal];
+    [buttonForwards setTitle:@"pressed" forState:UIControlStateHighlighted];
+    [buttonForwards addTarget:self action:@selector(forwardButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:buttonForwards];
+    
+    // backward button
+    UIButton* buttonBackwards = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    buttonBackwards.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    [buttonBackwards setFrame:CGRectMake(120, 420, 80, 60)];
+    [buttonBackwards setTitle:@"backwards" forState:UIControlStateNormal];
+    [buttonBackwards setTitle:@"pressed" forState:UIControlStateHighlighted];
+    [buttonBackwards addTarget:self action:@selector(backwardButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:buttonBackwards];
+    
+    // leftward button
+    UIButton* buttonLeftwards = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    buttonLeftwards.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+    [buttonLeftwards setFrame:CGRectMake(30, 385, 80, 60)];
+    [buttonLeftwards setTitle:@"leftwards" forState:UIControlStateNormal];
+    [buttonLeftwards setTitle:@"pressed" forState:UIControlStateHighlighted];
+    [buttonLeftwards addTarget:self action:@selector(leftwardButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:buttonLeftwards];
+    
+    // rightward button
+    UIButton* buttonRightwards = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    buttonRightwards.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+    [buttonRightwards setFrame:CGRectMake(210, 385, 80, 60)];
+    [buttonRightwards setTitle:@"rightwards" forState:UIControlStateNormal];
+    [buttonRightwards setTitle:@"pressed" forState:UIControlStateHighlighted];
+    [buttonRightwards addTarget:self action:@selector(rightwardButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:buttonRightwards];
+}
+
+- (void)forwardButtonPressed
+{
+    NSLog(@"forwards!");
+}
+- (void)backwardButtonPressed
+{
+    NSLog(@"backwards!");
+}
+- (void)leftwardButtonPressed
+{
+    NSLog(@"leftwards!");
+}
+- (void)rightwardButtonPressed
+{
+    NSLog(@"rightwards");
+}
+
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
@@ -45,10 +105,16 @@
     CGPoint point = [touch locationInView:self.view];
     NSLog(@"xg:%f,yg:%f",point.x,point.y);
 }
-
 - (void)touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     
 }
-
+-(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    
+}
+-(void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    
+}
 @end
