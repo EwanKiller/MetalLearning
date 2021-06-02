@@ -6,6 +6,7 @@
   - Language ： Object - C ;
   - Game Technology： Metal ;
   - iOS Development Target ： 14.1 ;
+  - Math Lib：Eigen
 - Project Description
   - Implement a roaming camera in 3D world ;
   - Roaming camera circles the target ;
