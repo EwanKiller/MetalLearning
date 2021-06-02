@@ -21,9 +21,7 @@
 
     _view = (MTKView *)self.view;
 
-
     _view.device = MTLCreateSystemDefaultDevice();
-    _view.backgroundColor = UIColor.blackColor;
 
     if(!_view.device)
     {
@@ -38,7 +36,7 @@
 
     _view.delegate = _renderer;
     
-    [self addMoveButton];
+    //[self addMoveButton];
 
 }
 
