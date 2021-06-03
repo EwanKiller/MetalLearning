@@ -22,15 +22,19 @@ struct VertexData
 };
 
 vertex VertexData
-vertexShader(uint vertexID[[vertex_id]],constant Vertex *vertices [[buffer(0)]])
+vertexShader(uint vertexID[[vertex_id]],constant Vertex *vertices [[buffer(VertexInputIndexVertices)]],constant vector_uint2 *viewportSizePointer [[buffer(VertexInputIndexViewportSize)]])
 {
     VertexData out;
     out.position = vertices[vertexID].position;
+    float2 pixelSpacePosition = vertices[vertexID].position.xy;
+    vector_float2 viewportSize = vector_float2(*viewportSizePointer);
+    out.position.xy = pixelSpacePosition / (viewportSize / 2.0);
     out.color = vertices[vertexID].color;
     return out;
 }
 
-fragment float4 fragmentShader(VertexData in [[stage_in]])
+fragment float4
+fragmentShader(VertexData in [[stage_in]])
 {
     return in.color;
 }

@@ -19,7 +19,8 @@
 #endif
 
 #include <simd/simd.h>
-typedef enum VertexInputIndex{
+typedef enum VertexInputIndex
+{
     VertexInputIndexVertices     = 0,
     VertexInputIndexViewportSize = 1,
 } VertexInputIndex;

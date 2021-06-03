@@ -11,6 +11,7 @@
 
 // Include header shared between C code here, which executes Metal API commands, and .metal files
 #import "ShaderTypes.h"
+#import "Rectangle.h"
 
 
 @implementation Renderer
@@ -54,13 +55,24 @@
 {
     static const Vertex triangleVertices[] =
     {
-        // 2D positions,    RGBA colors
-        { { -1.0, 1.0, 0 , 1.0 }, { 1, 0, 0, 1 } },
-        { { 1.0 , 1.0 ,0 , 1.0 }, { 0, 1, 0, 1 } },
-        { { 1.0, -1.0, 0 ,1.0 }, { 0, 0, 1, 1 } },
-        { { -1.0, 1.0, 0 , 1.0 }, { 1, 0, 0, 1 } },
-        { { 1.0 , -1.0 ,0 , 1.0 }, { 0, 1, 0, 1 } },
-        { {-1.0, -1.0, 0 ,1.0 }, { 0, 1, 0, 1} },
+        // 3D positions,    RGBA colors
+        { { -100.0, 100.0, 100, 1.0 }, { 1, 0, 0, 1 } },
+        { { 100.0 , 100.0, 100, 1.0 }, { 0, 1, 0, 1 } },
+        { { 100.0, -100.0, 100, 1.0 }, { 0, 0, 1, 1 } },
+        { { -100.0, -100.0, 100, 1.0 }, { 1, 0, 0, 1 } },
+        { { 100.0 , 100.0, 100, 1.0 }, { 0, 1, 0, 1 } },
+        { { -100.0, 100.0, 100, 1.0 }, { 1, 0, 0, 1 } },
+        { { -100.0, -100.0, 100, 1.0 }, { 1, 0, 0, 1 } },
+        { { 100.0, -100.0, 100, 1.0 }, { 0, 0, 1, 1 } },
+    };
+    static const UInt16 indices[] =
+    {
+        0, 1, 2, 2, 3, 0, // front
+        4, 5, 6, 6, 7 ,4, // back
+        0, 3, 7, 7, 5, 0, // left
+        1, 4, 7, 7, 2, 1, // right
+        0, 5, 4, 4, 1, 0, // top
+        3, 2, 7, 7, 6, 3, // bottom
     };
     
     id<MTLCommandBuffer> commandBuffer = [_commandQueue commandBuffer];
@@ -70,9 +82,13 @@
     if (renderPassDescriptor != nil) {
         id<MTLRenderCommandEncoder> renderEncoder = [commandBuffer renderCommandEncoderWithDescriptor:renderPassDescriptor];
         renderEncoder.label = @"EwanRenderEncoder";
+        [renderEncoder setViewport:(MTLViewport){0.0, 0.0, _viewportSize.x, _viewportSize.y, 0.0, 1.0 }];
         [renderEncoder setRenderPipelineState:_pipelineState];
-        [renderEncoder setVertexBytes:triangleVertices length:sizeof(triangleVertices) atIndex:0];
-        [renderEncoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:6];
+        [renderEncoder setVertexBytes:triangleVertices length:sizeof(triangleVertices) atIndex:VertexInputIndexVertices];
+        [renderEncoder setVertexBytes:&_viewportSize length:sizeof(_viewportSize) atIndex:VertexInputIndexViewportSize];
+        //[renderEncoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:6];
+        id<MTLBuffer> indicesBuffer = [_device newBufferWithBytes:indices length:sizeof(indices) options:MTLResourceStorageModeShared];
+        [renderEncoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle indexCount:36 indexType:MTLIndexTypeUInt16 indexBuffer:indicesBuffer indexBufferOffset:0];
         [renderEncoder endEncoding];
         [commandBuffer presentDrawable:view.currentDrawable];
     }

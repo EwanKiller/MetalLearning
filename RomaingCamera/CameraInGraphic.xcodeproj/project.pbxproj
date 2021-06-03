@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		40F51D952668A2D70086A343 /* Rectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F51D942668A2D70086A343 /* Rectangle.m */; };
 		40F88E7626652B850088CDFD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F88E7526652B850088CDFD /* AppDelegate.m */; };
 		40F88E7926652B850088CDFD /* Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F88E7826652B850088CDFD /* Renderer.m */; };
 		40F88E7C26652B850088CDFD /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F88E7B26652B850088CDFD /* GameViewController.m */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		40F51D932668A2D70086A343 /* Rectangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
+		40F51D942668A2D70086A343 /* Rectangle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Rectangle.m; sourceTree = "<group>"; };
 		40F88E7126652B850088CDFD /* CameraInGraphic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraInGraphic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40F88E7426652B850088CDFD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		40F88E7526652B850088CDFD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -43,6 +46,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40F51D612668701D0086A343 /* Renderer */ = {
+			isa = PBXGroup;
+			children = (
+				40F88E7726652B850088CDFD /* Renderer.h */,
+				40F88E7826652B850088CDFD /* Renderer.m */,
+				40F88E7D26652B850088CDFD /* Shaders.metal */,
+				40F88E7F26652B850088CDFD /* ShaderTypes.h */,
+				40F51D932668A2D70086A343 /* Rectangle.h */,
+				40F51D942668A2D70086A343 /* Rectangle.m */,
+			);
+			path = Renderer;
+			sourceTree = "<group>";
+		};
 		40F88E6826652B850088CDFD = {
 			isa = PBXGroup;
 			children = (
@@ -62,14 +78,11 @@
 		40F88E7326652B850088CDFD /* CameraInGraphic */ = {
 			isa = PBXGroup;
 			children = (
+				40F51D612668701D0086A343 /* Renderer */,
 				40F88E7426652B850088CDFD /* AppDelegate.h */,
 				40F88E7526652B850088CDFD /* AppDelegate.m */,
-				40F88E7726652B850088CDFD /* Renderer.h */,
-				40F88E7826652B850088CDFD /* Renderer.m */,
 				40F88E7A26652B850088CDFD /* GameViewController.h */,
 				40F88E7B26652B850088CDFD /* GameViewController.m */,
-				40F88E7D26652B850088CDFD /* Shaders.metal */,
-				40F88E7F26652B850088CDFD /* ShaderTypes.h */,
 				40F88E8026652B850088CDFD /* Main.storyboard */,
 				40F88E8326652B850088CDFD /* Assets.xcassets */,
 				40F88E8526652B850088CDFD /* Info.plist */,
@@ -149,6 +162,7 @@
 				40F88E8726652B850088CDFD /* main.m in Sources */,
 				40F88E7E26652B850088CDFD /* Shaders.metal in Sources */,
 				40F88E7926652B850088CDFD /* Renderer.m in Sources */,
+				40F51D952668A2D70086A343 /* Rectangle.m in Sources */,
 				40F88E7C26652B850088CDFD /* GameViewController.m in Sources */,
 				40F88E7626652B850088CDFD /* AppDelegate.m in Sources */,
 			);

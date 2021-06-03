@@ -32,11 +32,11 @@
 
     _renderer = [[Renderer alloc] initWithMetalKitView:_view];
 
-    [_renderer mtkView:_view drawableSizeWillChange:_view.bounds.size];
+    [_renderer mtkView:_view drawableSizeWillChange:_view.drawableSize];
 
     _view.delegate = _renderer;
     
-    //[self addMoveButton];
+    [self addMoveButton];
 
 }
 
