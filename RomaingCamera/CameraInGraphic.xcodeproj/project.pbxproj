@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		40F51D952668A2D70086A343 /* Rectangle.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F51D942668A2D70086A343 /* Rectangle.m */; };
+		4082FE182669302500FD2F7D /* Camera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4082FE172669302500FD2F7D /* Camera.mm */; };
+		4082FE1C266946A400FD2F7D /* Matrix.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4082FE1B266946A400FD2F7D /* Matrix.mm */; };
+		40F51D952668A2D70086A343 /* Rectangle.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40F51D942668A2D70086A343 /* Rectangle.mm */; };
 		40F88E7626652B850088CDFD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F88E7526652B850088CDFD /* AppDelegate.m */; };
 		40F88E7926652B850088CDFD /* Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F88E7826652B850088CDFD /* Renderer.m */; };
 		40F88E7C26652B850088CDFD /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F88E7B26652B850088CDFD /* GameViewController.m */; };
@@ -18,8 +20,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4082FE172669302500FD2F7D /* Camera.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Camera.mm; sourceTree = "<group>"; };
+		4082FE1B266946A400FD2F7D /* Matrix.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Matrix.mm; sourceTree = "<group>"; };
+		4082FE1F2669492C00FD2F7D /* Matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
+		4082FE2026694F4600FD2F7D /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		4082FE2126694FDB00FD2F7D /* BaseTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTypes.h; sourceTree = "<group>"; };
 		40F51D932668A2D70086A343 /* Rectangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
-		40F51D942668A2D70086A343 /* Rectangle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Rectangle.m; sourceTree = "<group>"; };
+		40F51D942668A2D70086A343 /* Rectangle.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Rectangle.mm; sourceTree = "<group>"; };
 		40F88E7126652B850088CDFD /* CameraInGraphic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraInGraphic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40F88E7426652B850088CDFD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		40F88E7526652B850088CDFD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -54,7 +61,12 @@
 				40F88E7D26652B850088CDFD /* Shaders.metal */,
 				40F88E7F26652B850088CDFD /* ShaderTypes.h */,
 				40F51D932668A2D70086A343 /* Rectangle.h */,
-				40F51D942668A2D70086A343 /* Rectangle.m */,
+				40F51D942668A2D70086A343 /* Rectangle.mm */,
+				4082FE2026694F4600FD2F7D /* Camera.h */,
+				4082FE172669302500FD2F7D /* Camera.mm */,
+				4082FE1F2669492C00FD2F7D /* Matrix.h */,
+				4082FE1B266946A400FD2F7D /* Matrix.mm */,
+				4082FE2126694FDB00FD2F7D /* BaseTypes.h */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -159,10 +171,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4082FE1C266946A400FD2F7D /* Matrix.mm in Sources */,
+				4082FE182669302500FD2F7D /* Camera.mm in Sources */,
 				40F88E8726652B850088CDFD /* main.m in Sources */,
 				40F88E7E26652B850088CDFD /* Shaders.metal in Sources */,
 				40F88E7926652B850088CDFD /* Renderer.m in Sources */,
-				40F51D952668A2D70086A343 /* Rectangle.m in Sources */,
+				40F51D952668A2D70086A343 /* Rectangle.mm in Sources */,
 				40F88E7C26652B850088CDFD /* GameViewController.m in Sources */,
 				40F88E7626652B850088CDFD /* AppDelegate.m in Sources */,
 			);

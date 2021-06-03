@@ -19,6 +19,7 @@
 #endif
 
 #include <simd/simd.h>
+
 typedef enum VertexInputIndex
 {
     VertexInputIndexVertices     = 0,
