@@ -11,7 +11,6 @@
 
 // Include header shared between C code here, which executes Metal API commands, and .metal files
 #import "ShaderTypes.h"
-#import "Rectangle.h"
 
 
 @implementation Renderer

@@ -25,7 +25,7 @@
 		4082FE1F2669492C00FD2F7D /* Matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
 		4082FE2026694F4600FD2F7D /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		4082FE2126694FDB00FD2F7D /* BaseTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTypes.h; sourceTree = "<group>"; };
-		40F51D932668A2D70086A343 /* Rectangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
+		40A64A4C2669FF9300E0B9DA /* Rectangle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Rectangle.h; sourceTree = "<group>"; };
 		40F51D942668A2D70086A343 /* Rectangle.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Rectangle.mm; sourceTree = "<group>"; };
 		40F88E7126652B850088CDFD /* CameraInGraphic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraInGraphic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40F88E7426652B850088CDFD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 				40F88E7826652B850088CDFD /* Renderer.m */,
 				40F88E7D26652B850088CDFD /* Shaders.metal */,
 				40F88E7F26652B850088CDFD /* ShaderTypes.h */,
-				40F51D932668A2D70086A343 /* Rectangle.h */,
+				40A64A4C2669FF9300E0B9DA /* Rectangle.h */,
 				40F51D942668A2D70086A343 /* Rectangle.mm */,
 				4082FE2026694F4600FD2F7D /* Camera.h */,
 				4082FE172669302500FD2F7D /* Camera.mm */,
