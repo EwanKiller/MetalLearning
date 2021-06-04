@@ -7,6 +7,11 @@
 
 #import <Foundation/Foundation.h>
 #include "Camera.h"
-#include "Matrix.h"
 
+#include <eigen3/Eigen/Eigen>
 
+Camera::Camera(){
+    Eigen::Matrix4f m4;
+    Eigen::Matrix4f m6;
+    m4 * m6;
+}

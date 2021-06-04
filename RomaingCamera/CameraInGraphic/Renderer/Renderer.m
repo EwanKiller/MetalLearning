@@ -12,7 +12,6 @@
 // Include header shared between C code here, which executes Metal API commands, and .metal files
 #import "ShaderTypes.h"
 
-
 @implementation Renderer
 {
     id <MTLDevice> _device;

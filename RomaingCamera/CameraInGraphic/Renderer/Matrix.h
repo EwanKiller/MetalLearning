@@ -8,11 +8,14 @@
 #ifndef Matrix_h
 #define Matrix_h
 
-#import "ShaderTypes.h"
+#import "BaseTypes.h"
 
 class Matrix{
+    
 public:
     static Matrix4f vec3f2Matrix4f(Vector3f vec3f);
+    
+    Matrix4x4f operator*(const Matrix4x4f& matrix) const;
     
     static Matrix4x4f translateMatrix(Vector3f vec3f);
     
