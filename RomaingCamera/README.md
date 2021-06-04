@@ -1,9 +1,8 @@
 # Camera In Graphic
 
 - Project info
-  - IDE : Xcode 12
-  - ios - Game ;
-  - Language ： Object - C ;
+  - IDE ： Xcode 12
+  - Target ：iOS - Game
   - Game Technology： Metal ;
   - iOS Development Target ： 14.1 ;
   - Math Lib：Eigen
@@ -14,17 +13,17 @@
 
 ## 实现的功能
 
-1. iOS native UI Button的响应事件；
+1. iOS UI Button 相关；
 
-- GameViewController.m  - (void) addMoveButton
+- 入口：GameViewController.m  -> (void) addMoveButton
 
-2. iOS屏幕的点击事件；
+2. iOS 屏幕触摸事件相关；
 
-- GameViewController.m  - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *) event
+- 入口：GameViewController.m  -> (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *) event
 
 ## 项目总结
 
-1. iOS的原生 UI Button ；
+1. iOS的 UI Button ；
 
    - 创建UI Button的流程是：
 
@@ -51,7 +50,7 @@
    - 在继承了UIViewController的脚本中，实现如下方法
 
      ```objective-c
-     	// 触摸开始
+       // 触摸开始
      - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
        // 触摸结束
      - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
