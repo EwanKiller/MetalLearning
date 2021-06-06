@@ -1,32 +1,35 @@
 //
-//  Matrix.h
+//  Matrix.hpp
 //  CameraInGraphic
 //
-//  Created by ThisEwan on 2021/6/4.
+//  Created by ThisEwan on 2021/6/6.
 //
-
+/**
+ column matrix
+ */
 #ifndef Matrix_h
 #define Matrix_h
 
-#import "BaseTypes.h"
-
-class Matrix{
-    
+class Matrix4x1f{
 public:
-    static Matrix4f vec3f2Matrix4f(Vector3f vec3f);
+    float col[4];
     
-    Matrix4x4f operator*(const Matrix4x4f& matrix) const;
-    
-    static Matrix4x4f translateMatrix(Vector3f vec3f);
-    
-    static Matrix4x4f scaleMatrix(Vector3f vec3f);
-    
-    static Matrix4x4f rotateMatrixAxisX(float angle);
-    
-    static Matrix4x4f rotateMatrixAxisY(float angle);
-    
-    static Matrix4x4f rotateMatrixAxisZ(float angle);
-    
-    static Matrix4x4f rotateMatrix(float angle,Vector3f Axis);
+    Matrix4x1f();
+    ~Matrix4x1f();
+    Matrix4x1f(float x, float y, float z, float w);
+    Matrix4x1f& operator>>(const float item[]);
 };
-#endif /* Matrix_h */
+
+class Matrix4x4f{
+public:
+    // [row][column]
+    float item[4][4];
+    Matrix4x4f();
+    /** column matrix but write in as row matrix for float array*/
+    Matrix4x4f& operator>>(const float item[]);
+    
+    static void multiply(const Matrix4x4f &lhs, const Matrix4x1f &rhs, Matrix4x1f &outResult);
+    static void multiply(const Matrix4x4f &lhs, const Matrix4x4f &rhs, Matrix4x4f &outResult);
+};
+
+#endif /* Matrix_hpp */

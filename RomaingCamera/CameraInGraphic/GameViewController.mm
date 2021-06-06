@@ -7,6 +7,7 @@
 
 #import "GameViewController.h"
 #import "Renderer.h"
+#import "Matrix.h"
 
 @implementation GameViewController
 {
@@ -37,7 +38,7 @@
     _view.delegate = _renderer;
     
     [self addMoveButton];
-
+    
 }
 
 - (void)addMoveButton
