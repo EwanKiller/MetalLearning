@@ -10,6 +10,7 @@
 		4012C14F266D0CFD00017435 /* Vector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4012C14E266D0CFD00017435 /* Vector.mm */; };
 		4012C157266D116300017435 /* Matrix.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4012C155266D116300017435 /* Matrix.mm */; };
 		4012C15E266D2C5400017435 /* Transform.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4012C15C266D2C5400017435 /* Transform.mm */; };
+		403399B2266E118600F0C308 /* Camera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 403399B0266E118600F0C308 /* Camera.mm */; };
 		40F88E7626652B850088CDFD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F88E7526652B850088CDFD /* AppDelegate.m */; };
 		40F88E7926652B850088CDFD /* Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F88E7826652B850088CDFD /* Renderer.m */; };
 		40F88E7C26652B850088CDFD /* GameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40F88E7B26652B850088CDFD /* GameViewController.mm */; };
@@ -26,6 +27,8 @@
 		4012C156266D116300017435 /* Matrix.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Matrix.h; sourceTree = "<group>"; };
 		4012C15C266D2C5400017435 /* Transform.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Transform.mm; sourceTree = "<group>"; };
 		4012C15D266D2C5400017435 /* Transform.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Transform.h; sourceTree = "<group>"; };
+		403399B0266E118600F0C308 /* Camera.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Camera.mm; sourceTree = "<group>"; };
+		403399B1266E118600F0C308 /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		40F88E7126652B850088CDFD /* CameraInGraphic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CameraInGraphic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40F88E7426652B850088CDFD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		40F88E7526652B850088CDFD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -65,6 +68,8 @@
 				4012C156266D116300017435 /* Matrix.h */,
 				4012C15C266D2C5400017435 /* Transform.mm */,
 				4012C15D266D2C5400017435 /* Transform.h */,
+				403399B0266E118600F0C308 /* Camera.mm */,
+				403399B1266E118600F0C308 /* Camera.h */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -173,6 +178,7 @@
 				4012C14F266D0CFD00017435 /* Vector.mm in Sources */,
 				4012C15E266D2C5400017435 /* Transform.mm in Sources */,
 				40F88E8726652B850088CDFD /* main.m in Sources */,
+				403399B2266E118600F0C308 /* Camera.mm in Sources */,
 				40F88E7E26652B850088CDFD /* Shaders.metal in Sources */,
 				40F88E7926652B850088CDFD /* Renderer.m in Sources */,
 				40F88E7C26652B850088CDFD /* GameViewController.mm in Sources */,

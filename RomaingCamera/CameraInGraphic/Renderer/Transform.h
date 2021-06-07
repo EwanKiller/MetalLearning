@@ -12,6 +12,7 @@
 
 class AffineTransform
 {
+public:
     static void Translate(const Vector3f& offset, Vector3f& pos);
     static void RotateAxisX(const float angle, Vector3f& pos);
     static void RotateAxisY(const float angle, Vector3f& pos);
