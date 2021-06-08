@@ -6,6 +6,7 @@
 //
 
 #include "Transform.h"
+#include <math.h>
 
 void AffineTransform::Translate(const Vector3f &offset, Vector3f &pos)
 {
@@ -32,8 +33,8 @@ void AffineTransform::RotateAxisX(const float angle, Vector3f &pos)
     float item[16] =
     {
         1,0,0,0,
-        cos(angle),sin(angle),0,0,
-        -sin(angle),cos(angle),0,0,
+        cosf(angle),sinf(angle),0,0,
+        -sinf(angle),cosf(angle),0,0,
         0,0,0,1,
     };
     Matrix4x4f rotateMatrix;
@@ -49,9 +50,9 @@ void AffineTransform::RotateAxisY(const float angle, Vector3f &pos)
     Matrix4x1f posMatrix = Matrix4x1f(pos.x,pos.y,pos.z,1.0);
     float item[16] =
     {
-        cos(angle),-sin(angle),0,0,
+        cosf(angle),-sinf(angle),0,0,
         0,1,0,0,
-        sin(angle),cos(angle),0,0,
+        sinf(angle),cosf(angle),0,0,
         0,0,0,1,
     };
     Matrix4x4f rotateMatrix;
@@ -67,8 +68,8 @@ void AffineTransform::RotateAxisZ(const float angle, Vector3f &pos)
     Matrix4x1f posMatrix = Matrix4x1f(pos.x,pos.y,pos.z,1.0);
     float item[16] =
     {
-        cos(angle),sin(angle),0,0,
-        -sin(angle),cos(angle),0,0,
+        cosf(angle),sinf(angle),0,0,
+        -sinf(angle),cosf(angle),0,0,
         0,0,1,0,
         0,0,0,1,
     };

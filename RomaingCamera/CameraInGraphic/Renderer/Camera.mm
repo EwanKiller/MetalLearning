@@ -29,8 +29,10 @@ Matrix4x4f Camera::getViewMatrix(const Vector3f &offset, const Vector3f &target,
     N = target - position;
     Vector3f U;
     Vector3f::cross(up, N, U);
+    U.normalize();
     Vector3f V;
     Vector3f::cross(N, U, V);
+    V.normalize();
     float items1[16] =
     {
         U.x,U.y,U.z,0,

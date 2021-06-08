@@ -7,9 +7,8 @@
 
 #ifndef Vector_h
 #define Vector_h
-#include <iostream>
 #include "Matrix.h"
-using namespace::std;
+#include <math.h>
 
 class Vector3f{
 public:

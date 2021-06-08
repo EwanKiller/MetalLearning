@@ -44,7 +44,7 @@
         // 创建指令队列
         _commandQueue = [_device newCommandQueue];
     }
-
+    
     return self;
 }
 
