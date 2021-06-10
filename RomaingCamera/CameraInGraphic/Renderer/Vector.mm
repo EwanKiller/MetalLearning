@@ -29,9 +29,9 @@ Vector3f Vector3f::operator-(const Vector3f &vec) const
 void Vector3f::normalize()
 {
     float magnitude = sqrtf(x * x + y * y + z * z);
-    if(magnitude > 0)
+    if(magnitude > 0.0f)
     {
-        float oneOverMag = 1 / magnitude;
+        float oneOverMag = 1.0f / magnitude;
         x *= oneOverMag;
         y *= oneOverMag;
         z *= oneOverMag;

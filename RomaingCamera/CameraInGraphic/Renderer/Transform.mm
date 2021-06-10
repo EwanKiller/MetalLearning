@@ -10,13 +10,13 @@
 
 void AffineTransform::Translate(const Vector3f &offset, Vector3f &pos)
 {
-    Matrix4x1f posMatrix = Matrix4x1f(pos.x,pos.y,pos.z,1.0);
+    Matrix4x1f posMatrix = Matrix4x1f(pos.x,pos.y,pos.z,1.0f);
     float item[16] =
     {
-        1,0,0,offset.x,
-        0,1,0,offset.y,
-        0,0,1,offset.z,
-        0,0,0,1,
+        1.0f,0.0f,0.0f,offset.x,
+        0.0f,1.0f,0.0f,offset.y,
+        0.0f,0.0f,1.0f,offset.z,
+        0.0f,0.0f,0.0f,1.0f,
     };
     Matrix4x4f translateMatrix;
     translateMatrix>>item;
@@ -29,13 +29,13 @@ void AffineTransform::Translate(const Vector3f &offset, Vector3f &pos)
 
 void AffineTransform::RotateAxisX(const float angle, Vector3f &pos)
 {
-    Matrix4x1f posMatrix = Matrix4x1f(pos.x,pos.y,pos.z,1.0);
+    Matrix4x1f posMatrix = Matrix4x1f(pos.x,pos.y,pos.z,1.0f);
     float item[16] =
     {
-        1,0,0,0,
-        cosf(angle),sinf(angle),0,0,
-        -sinf(angle),cosf(angle),0,0,
-        0,0,0,1,
+        1.0f,0.0f,0.0f,0.0f,
+        cosf(angle),sinf(angle),0.0f,0.0f,
+        -sinf(angle),cosf(angle),0.0f,0.0f,
+        0.0f,0.0f,0.0f,1.0f,
     };
     Matrix4x4f rotateMatrix;
     rotateMatrix>>item;
@@ -47,13 +47,13 @@ void AffineTransform::RotateAxisX(const float angle, Vector3f &pos)
 }
 void AffineTransform::RotateAxisY(const float angle, Vector3f &pos)
 {
-    Matrix4x1f posMatrix = Matrix4x1f(pos.x,pos.y,pos.z,1.0);
+    Matrix4x1f posMatrix = Matrix4x1f(pos.x,pos.y,pos.z,1.0f);
     float item[16] =
     {
-        cosf(angle),-sinf(angle),0,0,
-        0,1,0,0,
-        sinf(angle),cosf(angle),0,0,
-        0,0,0,1,
+        cosf(angle),-sinf(angle),0.0f,0.0f,
+        0.0f,1.0f,0.0f,0.0f,
+        sinf(angle),cosf(angle),0.0f,0.0f,
+        0.0f,0.0f,0.0f,1.0f,
     };
     Matrix4x4f rotateMatrix;
     rotateMatrix>>item;
@@ -65,13 +65,13 @@ void AffineTransform::RotateAxisY(const float angle, Vector3f &pos)
 }
 void AffineTransform::RotateAxisZ(const float angle, Vector3f &pos)
 {
-    Matrix4x1f posMatrix = Matrix4x1f(pos.x,pos.y,pos.z,1.0);
+    Matrix4x1f posMatrix = Matrix4x1f(pos.x,pos.y,pos.z,1.0f);
     float item[16] =
     {
-        cosf(angle),sinf(angle),0,0,
-        -sinf(angle),cosf(angle),0,0,
-        0,0,1,0,
-        0,0,0,1,
+        cosf(angle),sinf(angle),0.0f,0.0f,
+        -sinf(angle),cosf(angle),0.0f,0.0f,
+        0.0f,0.0f,1.0f,0.0f,
+        0.0f,0.0f,0.0f,1.0f,
     };
     Matrix4x4f rotateMatrix;
     rotateMatrix>>item;
@@ -83,13 +83,13 @@ void AffineTransform::RotateAxisZ(const float angle, Vector3f &pos)
 }
 void AffineTransform::Scale(const Vector3f &factor, Vector3f &pos)
 {
-    Matrix4x1f posMatrix = Matrix4x1f(pos.x,pos.y,pos.z,1.0);
+    Matrix4x1f posMatrix = Matrix4x1f(pos.x,pos.y,pos.z,1.0f);
     float item[16] =
     {
-        factor.x,0,0,0,
-        0,factor.y,0,0,
-        0,0,factor.z,0,
-        0,0,0,1,
+        factor.x,0.0f,0.0f,0.0f,
+        0.0f,factor.y,0.0f,0.0f,
+        0.0f,0.0f,factor.z,0.0f,
+        0.0f,0.0f,0.0f,1.0f,
     };
     Matrix4x4f scaleMatrix;
     scaleMatrix>>item;

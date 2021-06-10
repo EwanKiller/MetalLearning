@@ -11,10 +11,10 @@ Camera::Camera()
     position = Vector3f(0.0f,0.0f,0.0f);
     rotation = Vector3f(0.0f,0.0f,0.0f);
     scale = Vector3f(1.0f,1.0f,1.0f);
-    fov = 90;
-    aspectRatio = 1.0;
-    near = 0;
-    far = 100;
+    fov = 90.0f;
+    aspectRatio = 1.0f;
+    near = 0.0f;
+    far = 100.0f;
 }
 Camera::~Camera()
 {
@@ -36,10 +36,10 @@ Matrix4x4f Camera::getViewMatrix(const Vector3f &target, const Vector3f &up) con
 {
     float viewTransMatrixItems[16] =
     {
-        1,0,0,-position.x,
-        0,1,0,-position.y,
-        0,0,1,-position.z,
-        0,0,0,1,
+        1.0f,0.0f,0.0f,-position.x,
+        0.0f,1.0f,0.0f,-position.y,
+        0.0f,0.0f,1.0f,-position.z,
+        0.0f,0.0f,0.0f,1.0f,
     };
     Matrix4x4f viewTranslateMatrix;
     viewTranslateMatrix>>viewTransMatrixItems;
@@ -54,10 +54,10 @@ Matrix4x4f Camera::getViewMatrix(const Vector3f &target, const Vector3f &up) con
     lookUp.normalize();
     float viewRotateMatrixItems[16] =
     {
-        lookRight.x,lookRight.y,lookRight.z,0,
-        lookUp.x,lookUp.y,lookUp.z,0,
-        lookAt.x,lookAt.y,lookAt.z,0,
-        0,0,0,1,
+        lookRight.x,lookRight.y,lookRight.z,0.0f,
+        lookUp.x,lookUp.y,lookUp.z,0.0f,
+        lookAt.x,lookAt.y,lookAt.z,0.0f,
+        0.0f,0.0f,0.0f,1.0f,
     };
     Matrix4x4f viewRotateMatrix;
     viewRotateMatrix>>viewRotateMatrixItems;

@@ -8,10 +8,10 @@
 #include "Matrix.h"
 
 Matrix4x1f::Matrix4x1f(){
-    col[0] = 0;
-    col[1] = 0;
-    col[2] = 0;
-    col[3] = 0;
+    col[0] = 0.0f;
+    col[1] = 0.0f;
+    col[2] = 0.0f;
+    col[3] = 0.0f;
 }
 Matrix4x1f::~Matrix4x1f()
 {
@@ -36,25 +36,25 @@ Matrix4x1f& Matrix4x1f::operator>>(const float item[])
 
 Matrix4x4f::Matrix4x4f()
 {
-    item[0][0] = 1.0;
-    item[1][0] = 0.0;
-    item[2][0] = 0.0;
-    item[3][0] = 0.0;
+    item[0][0] = 1.0f;
+    item[1][0] = 0.0f;
+    item[2][0] = 0.0f;
+    item[3][0] = 0.0f;
     
-    item[0][1] = 0.0;
-    item[1][1] = 1.0;
-    item[2][1] = 0.0;
-    item[3][1] = 0.0;
+    item[0][1] = 0.0f;
+    item[1][1] = 1.0f;
+    item[2][1] = 0.0f;
+    item[3][1] = 0.0f;
     
-    item[0][2] = 0.0;
-    item[1][2] = 0.0;
-    item[2][2] = 1.0;
-    item[3][2] = 0.0;
+    item[0][2] = 0.0f;
+    item[1][2] = 0.0f;
+    item[2][2] = 1.0f;
+    item[3][2] = 0.0f;
     
-    item[0][3] = 0.0;
-    item[1][3] = 0.0;
-    item[2][3] = 0.0;
-    item[3][3] = 1.0;
+    item[0][3] = 0.0f;
+    item[1][3] = 0.0f;
+    item[2][3] = 0.0f;
+    item[3][3] = 1.0f;
 }
 Matrix4x4f& Matrix4x4f::operator>>(const float arg[])
 {
