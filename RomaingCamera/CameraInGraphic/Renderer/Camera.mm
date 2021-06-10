@@ -6,7 +6,7 @@
 //
 
 #include "Camera.h"
-Camera::Camera()
+Camera::Camera(const float viewportX, const float viewportY)
 {
     position = Vector3f(0.0f,0.0f,0.0f);
     rotation = Vector3f(0.0f,0.0f,0.0f);
@@ -15,6 +15,8 @@ Camera::Camera()
     aspectRatio = 1.0f;
     near = 0.0f;
     far = 100.0f;
+    viewport_X = viewportX;
+    viewport_Y = viewportY;
 }
 Camera::~Camera()
 {
@@ -66,12 +68,12 @@ Matrix4x4f Camera::getViewMatrix(const Vector3f &target, const Vector3f &up) con
     return viewMatrix;
 }
 
-Matrix4x4f Camera::getOrthonormalProjection(const float viewportX, const float viewportY) const
+Matrix4x4f Camera::getOrthonormalMatrix() const
 {
     float orthoTransMatrixItems[16] =
     {
-        0.0f,0.0f,0.0f,-viewportX / 2,
-        0.0f,0.0f,0.0f,-viewportY / 2,
+        0.0f,0.0f,0.0f,-viewport_X / 2,
+        0.0f,0.0f,0.0f,-viewport_Y / 2,
         0.0f,0.0f,0.0f,-near,         // 这里z只平移near的原因是在Metal中，视锥Z方向上的距离是[0,1]而非[-1,1]
         0.0f,0.0f,0.0f,1.0f
     };
@@ -79,8 +81,8 @@ Matrix4x4f Camera::getOrthonormalProjection(const float viewportX, const float v
     orthoTranslateMatrix>>orthoTransMatrixItems;
     float orthoScaleMatrixItems[16] =
     {
-        2 / viewportX,0.0f,0.0f,0.0f,
-        0.0f,2 / viewportY,0.0f,0.0f,
+        2 / viewport_X,0.0f,0.0f,0.0f,
+        0.0f,2 / viewport_Y,0.0f,0.0f,
         0.0f,0.0f,1 / (far - near),0.0f,  // 这里z只缩放1/(far-near）也是因为视锥Z方向上的距离是[0,1]而非[-1,1]
         0.0f,0.0f,0.0f,1.0f,
     };
@@ -89,4 +91,17 @@ Matrix4x4f Camera::getOrthonormalProjection(const float viewportX, const float v
     Matrix4x4f orthoProjectionMatrix;
     Matrix4x4f::multiply(orthoTranslateMatrix, orthoScaleMatrix, orthoProjectionMatrix);
     return orthoProjectionMatrix;
+}
+Matrix4x4f Camera::getPerspectiveToOrthonormalMatrix() const
+{
+    float perspToOrthoItems[16] =
+    {
+        near,0.0f,0.0f,0.0f,
+        0.0f,near,0.0f,0.0f,
+        0.0f,0.0f,near + far,near/(near + far),
+        0.0f,0.0f,1.0f,0.0f,
+    };
+    Matrix4x4f perspToOrthMatrix;
+    perspToOrthMatrix>>perspToOrthoItems;
+    return perspToOrthMatrix;
 }

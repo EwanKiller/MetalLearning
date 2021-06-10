@@ -20,13 +20,15 @@ public:
     float aspectRatio;
     float near;
     float far;
+    float viewport_X;
+    float viewport_Y;
     
-    Camera();
+    Camera(const float viewportX, const float viewportY);
     ~Camera();
     Camera& operator=(const Camera& cam);
     Matrix4x4f getViewMatrix(const Vector3f& target, const Vector3f& up) const;
-    Matrix4x4f getOrthonormalProjection(const float viewportX, const float viewportY) const;
-    Matrix4x4f getPerspectiveProjection() const;
+    Matrix4x4f getOrthonormalMatrix() const;
+    Matrix4x4f getPerspectiveToOrthonormalMatrix() const;
 };
 
 #endif /* Camera_h */

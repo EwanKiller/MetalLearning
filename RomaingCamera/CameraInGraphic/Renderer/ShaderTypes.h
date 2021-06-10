@@ -32,5 +32,12 @@ typedef struct
     vector_float4 color;
 } Vertex;
 
+typedef struct
+{
+    matrix_float4x4 modelMatrix;
+    matrix_float4x4 viewMatrix;
+    matrix_float4x4 projectinMatrix;
+} Uniforms;
+
 #endif /* ShaderTypes_h */
 
