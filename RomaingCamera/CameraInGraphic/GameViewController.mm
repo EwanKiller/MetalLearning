@@ -10,6 +10,7 @@
 #import "Matrix.h"
 #import "Camera.h"
 #import "Vector.h"
+#import <eigen3/Eigen/Eigen>
 
 @implementation GameViewController
 {
@@ -40,16 +41,6 @@
     _view.delegate = _renderer;
     
     [self addMoveButton];
-    
-    Camera* camera = new Camera;
-    Vector3f a = Vector3f(0,0,-10);
-    Vector3f b = Vector3f(0,0,5);
-    Vector3f c = Vector3f(0,1,0);
-    Matrix4x4f mat;
-    mat =  camera->getViewMatrix(a, b, c);
-    Matrix4x1f point = Matrix4x1f(3.0f,1.0f,2.0f,1.0f);
-    Matrix4x1f end = Matrix4x1f();
-    Matrix4x4f::multiply(mat, point, end);
 }
 
 - (void)addMoveButton

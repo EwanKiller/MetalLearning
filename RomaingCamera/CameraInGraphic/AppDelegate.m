@@ -6,6 +6,7 @@
 //
 
 #import "AppDelegate.h"
+#include <eigen3/Eigen/Eigen>
 
 @interface AppDelegate ()
 

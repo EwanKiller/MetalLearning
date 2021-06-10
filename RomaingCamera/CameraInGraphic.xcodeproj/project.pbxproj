@@ -12,7 +12,7 @@
 		4012C15E266D2C5400017435 /* Transform.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4012C15C266D2C5400017435 /* Transform.mm */; };
 		403399B2266E118600F0C308 /* Camera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 403399B0266E118600F0C308 /* Camera.mm */; };
 		40F88E7626652B850088CDFD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F88E7526652B850088CDFD /* AppDelegate.m */; };
-		40F88E7926652B850088CDFD /* Renderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40F88E7826652B850088CDFD /* Renderer.m */; };
+		40F88E7926652B850088CDFD /* Renderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40F88E7826652B850088CDFD /* Renderer.mm */; };
 		40F88E7C26652B850088CDFD /* GameViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40F88E7B26652B850088CDFD /* GameViewController.mm */; };
 		40F88E7E26652B850088CDFD /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 40F88E7D26652B850088CDFD /* Shaders.metal */; };
 		40F88E8226652B850088CDFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40F88E8026652B850088CDFD /* Main.storyboard */; };
@@ -33,7 +33,7 @@
 		40F88E7426652B850088CDFD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		40F88E7526652B850088CDFD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		40F88E7726652B850088CDFD /* Renderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Renderer.h; sourceTree = "<group>"; };
-		40F88E7826652B850088CDFD /* Renderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Renderer.m; sourceTree = "<group>"; };
+		40F88E7826652B850088CDFD /* Renderer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Renderer.mm; sourceTree = "<group>"; };
 		40F88E7A26652B850088CDFD /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		40F88E7B26652B850088CDFD /* GameViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GameViewController.mm; sourceTree = "<group>"; };
 		40F88E7D26652B850088CDFD /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
@@ -61,7 +61,7 @@
 				4012C153266D0D6600017435 /* Vector.h */,
 				4012C14E266D0CFD00017435 /* Vector.mm */,
 				40F88E7726652B850088CDFD /* Renderer.h */,
-				40F88E7826652B850088CDFD /* Renderer.m */,
+				40F88E7826652B850088CDFD /* Renderer.mm */,
 				40F88E7D26652B850088CDFD /* Shaders.metal */,
 				40F88E7F26652B850088CDFD /* ShaderTypes.h */,
 				4012C155266D116300017435 /* Matrix.mm */,
@@ -180,7 +180,7 @@
 				40F88E8726652B850088CDFD /* main.m in Sources */,
 				403399B2266E118600F0C308 /* Camera.mm in Sources */,
 				40F88E7E26652B850088CDFD /* Shaders.metal in Sources */,
-				40F88E7926652B850088CDFD /* Renderer.m in Sources */,
+				40F88E7926652B850088CDFD /* Renderer.mm in Sources */,
 				40F88E7C26652B850088CDFD /* GameViewController.mm in Sources */,
 				40F88E7626652B850088CDFD /* AppDelegate.m in Sources */,
 			);

@@ -59,23 +59,23 @@ Matrix4x4f::Matrix4x4f()
 Matrix4x4f& Matrix4x4f::operator>>(const float arg[])
 {
     item[0][0] = arg[0];
-    item[1][0] = arg[1];
-    item[2][0] = arg[2];
-    item[3][0] = arg[3];
+    item[1][0] = arg[4];
+    item[2][0] = arg[8];
+    item[3][0] = arg[12];
     
-    item[0][1] = arg[4];
+    item[0][1] = arg[1];
     item[1][1] = arg[5];
-    item[2][1] = arg[6];
-    item[3][1] = arg[7];
+    item[2][1] = arg[9];
+    item[3][1] = arg[13];
     
-    item[0][2] = arg[8];
-    item[1][2] = arg[9];
+    item[0][2] = arg[2];
+    item[1][2] = arg[6];
     item[2][2] = arg[10];
-    item[3][2] = arg[11];
+    item[3][2] = arg[14];
     
-    item[0][3] = arg[12];
-    item[1][3] = arg[13];
-    item[2][3] = arg[14];
+    item[0][3] = arg[3];
+    item[1][3] = arg[7];
+    item[2][3] = arg[11];
     item[3][3] = arg[15];
     return *this;
 }

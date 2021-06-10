@@ -11,6 +11,7 @@
 
 // Include header shared between C code here, which executes Metal API commands, and .metal files
 #import "ShaderTypes.h"
+#import "Camera.h"
 
 @implementation Renderer
 {
@@ -18,6 +19,7 @@
     id <MTLCommandQueue> _commandQueue;
     id <MTLRenderPipelineState> _pipelineState;
     vector_uint2 _viewportSize;
+    Camera* camera;
 }
 
 -(nonnull instancetype)initWithMetalKitView:(nonnull MTKView *)view;
@@ -43,6 +45,7 @@
         }
         // 创建指令队列
         _commandQueue = [_device newCommandQueue];
+        camera = new Camera();
     }
     
     return self;
@@ -80,7 +83,7 @@
     if (renderPassDescriptor != nil) {
         id<MTLRenderCommandEncoder> renderEncoder = [commandBuffer renderCommandEncoderWithDescriptor:renderPassDescriptor];
         renderEncoder.label = @"EwanRenderEncoder";
-        [renderEncoder setViewport:(MTLViewport){0.0, 0.0, _viewportSize.x, _viewportSize.y, 0.0, 1.0 }];
+        [renderEncoder setViewport:(MTLViewport){0.0, 0.0, (double)_viewportSize.x, (double)_viewportSize.y, 0.0, 1.0 }];
         [renderEncoder setRenderPipelineState:_pipelineState];
         [renderEncoder setVertexBytes:triangleVertices length:sizeof(triangleVertices) atIndex:VertexInputIndexVertices];
         [renderEncoder setVertexBytes:&_viewportSize length:sizeof(_viewportSize) atIndex:VertexInputIndexViewportSize];
@@ -97,6 +100,11 @@
 {
     _viewportSize.x = size.width;
     _viewportSize.y = size.height;
+}
+
+- (void)dealloc
+{
+    delete camera;
 }
 
 @end

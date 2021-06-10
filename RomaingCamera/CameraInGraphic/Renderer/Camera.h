@@ -23,7 +23,10 @@ public:
     
     Camera();
     ~Camera();
-    Matrix4x4f getViewMatrix(const Vector3f& offset, const Vector3f& target, const Vector3f& up) const;
+    Camera& operator=(const Camera& cam);
+    Matrix4x4f getViewMatrix(const Vector3f& target, const Vector3f& up) const;
+    Matrix4x4f getOrthonormalProjection() const;
+    Matrix4x4f getPerspectiveProjection() const;
 };
 
 #endif /* Camera_h */
