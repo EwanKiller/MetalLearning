@@ -65,3 +65,28 @@ Matrix4x4f Camera::getViewMatrix(const Vector3f &target, const Vector3f &up) con
     Matrix4x4f::multiply(viewTranslateMatrix, viewRotateMatrix, viewMatrix);
     return viewMatrix;
 }
+
+Matrix4x4f Camera::getOrthonormalProjection(const float viewportX, const float viewportY) const
+{
+    float orthoTransMatrixItems[16] =
+    {
+        0.0f,0.0f,0.0f,-viewportX / 2,
+        0.0f,0.0f,0.0f,-viewportY / 2,
+        0.0f,0.0f,0.0f,-near,         // 这里z只平移near的原因是在Metal中，视锥Z方向上的距离是[0,1]而非[-1,1]
+        0.0f,0.0f,0.0f,1.0f
+    };
+    Matrix4x4f orthoTranslateMatrix;
+    orthoTranslateMatrix>>orthoTransMatrixItems;
+    float orthoScaleMatrixItems[16] =
+    {
+        2 / viewportX,0.0f,0.0f,0.0f,
+        0.0f,2 / viewportY,0.0f,0.0f,
+        0.0f,0.0f,1 / (far - near),0.0f,  // 这里z只缩放1/(far-near）也是因为视锥Z方向上的距离是[0,1]而非[-1,1]
+        0.0f,0.0f,0.0f,1.0f,
+    };
+    Matrix4x4f orthoScaleMatrix;
+    orthoScaleMatrix>>orthoScaleMatrixItems;
+    Matrix4x4f orthoProjectionMatrix;
+    Matrix4x4f::multiply(orthoTranslateMatrix, orthoScaleMatrix, orthoProjectionMatrix);
+    return orthoProjectionMatrix;
+}
