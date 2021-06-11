@@ -22,17 +22,6 @@ Camera::~Camera()
 {
     
 }
-Camera& Camera::operator=(const Camera &cam)
-{
-    this->position = cam.position;
-    this->rotation = cam.rotation;
-    this->scale = cam.scale;
-    this->fov = cam.fov;
-    this->aspectRatio = cam.aspectRatio;
-    this->near = cam.near;
-    this->far = cam.far;
-    return *this;
-}
 
 Matrix4x4f Camera::getViewMatrix(const Vector3f &target, const Vector3f &up) const
 {

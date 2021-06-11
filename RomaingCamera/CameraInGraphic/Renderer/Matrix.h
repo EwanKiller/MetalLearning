@@ -27,8 +27,9 @@ public:
     Matrix4x4f();
     /** column matrix but write in as row matrix for float array*/
     Matrix4x4f& operator>>(const float item[]);
-    static void multiply(const Matrix4x4f &lhs, const Matrix4x1f &rhs, Matrix4x1f &outResult) ;
+    static void multiply(const Matrix4x4f &lhs, const Matrix4x1f &rhs, Matrix4x1f &outResult);
     static void multiply(const Matrix4x4f &lhs, const Matrix4x4f &rhs, Matrix4x4f &outResult);
+    static matrix_float4x4 transNativeMatrix(const Matrix4x4f &mat);
 };
 
 #endif /* Matrix_hpp */

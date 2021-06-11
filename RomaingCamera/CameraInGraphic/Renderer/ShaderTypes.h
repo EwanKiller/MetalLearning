@@ -23,7 +23,7 @@
 typedef enum VertexInputIndex
 {
     VertexInputIndexVertices     = 0,
-    VertexInputIndexViewportSize = 1,
+    VertexInputIndexUniforms = 1,
 } VertexInputIndex;
 
 typedef struct

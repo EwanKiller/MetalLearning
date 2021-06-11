@@ -25,7 +25,6 @@ public:
     
     Camera(const float viewportX, const float viewportY);
     ~Camera();
-    Camera& operator=(const Camera& cam);
     Matrix4x4f getViewMatrix(const Vector3f& target, const Vector3f& up) const;
     Matrix4x4f getOrthonormalMatrix() const;
     Matrix4x4f getPerspectiveToOrthonormalMatrix() const;

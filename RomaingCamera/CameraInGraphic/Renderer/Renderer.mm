@@ -11,6 +11,7 @@
 
 // Include header shared between C code here, which executes Metal API commands, and .metal files
 #import "ShaderTypes.h"
+#import "Camera.h"
 
 @implementation Renderer
 {
@@ -19,6 +20,8 @@
     id <MTLRenderPipelineState> _pipelineState;
     vector_uint2 _viewportSize;
     id <MTLBuffer> _uniformBuffer;
+    Camera* camera;
+    Uniforms* uniform;
 }
 
 -(nonnull instancetype)initWithMetalKitView:(nonnull MTKView *)view;
@@ -45,7 +48,9 @@
         // 创建指令队列
         _commandQueue = [_device newCommandQueue];
         // 创建uniform buffer
-        _uniformBuffer = [_device newBufferWithLength:sizeof(_uniformBuffer) options:MTLResourceStorageModeShared];
+        _uniformBuffer = [_device newBufferWithLength:sizeof(Uniforms) options:MTLResourceStorageModeShared];
+        uniform = (Uniforms*)_uniformBuffer.contents;
+        camera = new Camera(_viewportSize.x, _viewportSize.y);
     }
     
     return self;
@@ -75,21 +80,22 @@
         0, 5, 4, 4, 1, 0, // top
         3, 2, 7, 7, 6, 3, // bottom
     };
+    Vector3f target = Vector3f(0,0,0);
+    Vector3f up = Vector3f(0,1,0);
+    Matrix4x4f viewME = camera->getViewMatrix(target, up);
+    //uniform->viewMatrix =
     
     id<MTLCommandBuffer> commandBuffer = [_commandQueue commandBuffer];
     commandBuffer.label = @"EwanCommand";
     MTLRenderPassDescriptor *renderPassDescriptor = view.currentRenderPassDescriptor;
-    
     if (renderPassDescriptor != nil) {
         id<MTLRenderCommandEncoder> renderEncoder = [commandBuffer renderCommandEncoderWithDescriptor:renderPassDescriptor];
         renderEncoder.label = @"EwanRenderEncoder";
-        //[renderEncoder setViewport:(MTLViewport){0.0, 0.0, (double)_viewportSize.x, (double)_viewportSize.y, 0.0, 1.0 }];
         [renderEncoder setRenderPipelineState:_pipelineState];
         [renderEncoder setVertexBytes:triangleVertices length:sizeof(triangleVertices) atIndex:VertexInputIndexVertices];
-        //[renderEncoder setVertexBytes:&_viewportSize length:sizeof(_viewportSize) atIndex:VertexInputIndexViewportSize];
-        //[renderEncoder drawPrimitives:MTLPrimitiveTypeTriangle vertexStart:0 vertexCount:6];
         id<MTLBuffer> indicesBuffer = [_device newBufferWithBytes:indices length:sizeof(indices) options:MTLResourceStorageModeShared];
         [renderEncoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle indexCount:36 indexType:MTLIndexTypeUInt16 indexBuffer:indicesBuffer indexBufferOffset:0];
+        [renderEncoder setVertexBuffer:_uniformBuffer offset:0 atIndex:VertexInputIndexUniforms];
         [renderEncoder endEncoding];
         [commandBuffer presentDrawable:view.currentDrawable];
     }
@@ -101,5 +107,9 @@
     _viewportSize.x = size.width;
     _viewportSize.y = size.height;
 }
-
+-(void)dealloc
+{
+    delete camera;
+    delete uniform;
+}
 @end
