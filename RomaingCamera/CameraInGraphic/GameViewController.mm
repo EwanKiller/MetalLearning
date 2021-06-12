@@ -85,17 +85,21 @@
 - (void)forwardButtonPressed
 {
     NSLog(@"forwards!");
+    [_renderer sendKeboardValue:1];
 }
 - (void)backwardButtonPressed
 {
     NSLog(@"backwards!");
+    [_renderer sendKeboardValue:2];
 }
 - (void)leftwardButtonPressed
 {
     NSLog(@"leftwards!");
+    [_renderer sendKeboardValue:3];
 }
 - (void)rightwardButtonPressed
 {
+    [_renderer sendKeboardValue:4];
     NSLog(@"rightwards");
 }
 

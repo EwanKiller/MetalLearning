@@ -22,13 +22,15 @@ struct VertexData
 };
 
 vertex VertexData
-vertexShader(uint vertexID[[vertex_id]],constant Vertex *vertices [[buffer(VertexInputIndexVertices)]])
+vertexShader(uint vertexID[[vertex_id]],constant Vertex *vertices [[buffer(VertexInputIndexVertices)]],constant Uniforms *uniform [[buffer(VertexInputIndexUniforms)]])
 {
     VertexData out;
-    out.position.x = vertices[vertexID].position.x/200;
-    out.position.y = vertices[vertexID].position.y/200;
-    out.position.z = vertices[vertexID].position.z/200;
-    out.position.w = vertices[vertexID].position.w;
+    vector_float4 pos = vertices[vertexID].position;
+    out.position =  uniform->projectinMatrix * uniform->viewMatrix * pos;
+    out.position.x /= out.position.w;
+    out.position.y /= out.position.w;
+    out.position.z /= out.position.w;
+    out.position.w /= out.position.w;
     out.color = vertices[vertexID].color;
     return out;
 }

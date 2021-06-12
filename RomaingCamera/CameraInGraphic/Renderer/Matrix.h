@@ -9,6 +9,7 @@
  */
 #ifndef Matrix_h
 #define Matrix_h
+#include <simd/simd.h>
 
 class Matrix4x1f{
 public:
@@ -29,7 +30,7 @@ public:
     Matrix4x4f& operator>>(const float item[]);
     static void multiply(const Matrix4x4f &lhs, const Matrix4x1f &rhs, Matrix4x1f &outResult);
     static void multiply(const Matrix4x4f &lhs, const Matrix4x4f &rhs, Matrix4x4f &outResult);
-    static matrix_float4x4 transNativeMatrix(const Matrix4x4f &mat);
+    matrix_float4x4 transNativeMatrix();
 };
 
 #endif /* Matrix_hpp */

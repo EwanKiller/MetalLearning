@@ -13,5 +13,7 @@
 
 -(nonnull instancetype)initWithMetalKitView:(nonnull MTKView *)view;
 
+-(void)sendKeboardValue:(int)keycode;
+
 @end
 

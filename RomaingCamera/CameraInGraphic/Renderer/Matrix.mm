@@ -6,6 +6,7 @@
 //
 
 #include "Matrix.h"
+#import <Foundation/Foundation.h>
 
 Matrix4x1f::Matrix4x1f(){
     col[0] = 0.0f;
@@ -112,4 +113,28 @@ void Matrix4x4f::multiply(const Matrix4x4f &lhs, const Matrix4x4f &rhs, Matrix4x
 //            outResult.item[row][col] = lhs.item[row][0] * rhs.item[0][col] + lhs.item[row][1] * rhs.item[1][col] + lhs.item[row][2] * rhs.item[2][col] + lhs.item[row][3] * rhs.item[3][col];
 //        }
 //    }
+}
+matrix_float4x4 Matrix4x4f::transNativeMatrix()
+{
+    simd_float4 col1;
+    col1.x = item[0][0];
+    col1.y = item[1][0];
+    col1.z = item[2][0];
+    col1.w = item[3][0];
+    simd_float4 col2;
+    col2.x = item[0][1];
+    col2.y = item[1][1];
+    col2.z = item[2][1];
+    col2.w = item[3][1];
+    simd_float4 col3;
+    col3.x = item[0][2];
+    col3.y = item[1][2];
+    col3.z = item[2][2];
+    col3.w = item[3][2];
+    simd_float4 col4;
+    col4.x = item[0][3];
+    col4.y = item[1][3];
+    col4.z = item[2][3];
+    col4.w = item[3][3];
+    return simd_matrix(col1, col2, col3, col4);
 }

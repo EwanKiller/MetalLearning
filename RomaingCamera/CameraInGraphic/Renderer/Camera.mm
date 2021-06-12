@@ -6,6 +6,7 @@
 //
 
 #include "Camera.h"
+
 Camera::Camera(const float viewportX, const float viewportY)
 {
     position = Vector3f(0.0f,0.0f,0.0f);
@@ -13,8 +14,8 @@ Camera::Camera(const float viewportX, const float viewportY)
     scale = Vector3f(1.0f,1.0f,1.0f);
     fov = 90.0f;
     aspectRatio = 1.0f;
-    near = 0.0f;
-    far = 100.0f;
+    near = 1.0f;
+    far = 500.0f;
     viewport_X = viewportX;
     viewport_Y = viewportY;
 }
@@ -23,7 +24,7 @@ Camera::~Camera()
     
 }
 
-Matrix4x4f Camera::getViewMatrix(const Vector3f &target, const Vector3f &up) const
+Matrix4x4f Camera::getViewMatrix() const
 {
     float viewTransMatrixItems[16] =
     {
@@ -59,38 +60,57 @@ Matrix4x4f Camera::getViewMatrix(const Vector3f &target, const Vector3f &up) con
 
 Matrix4x4f Camera::getOrthonormalMatrix() const
 {
+    /** T_ortho 正交投影的frustum的平移矩阵*/
+    float halfViewX = viewport_X / 2.0f;
+    float halfViewY = viewport_Y / 2.0f;
+    float l = -halfViewX + position.x;
+    float r = halfViewX + position.x;
+    float b = -halfViewY + position.y;
+    float t = halfViewY + position.y;
     float orthoTransMatrixItems[16] =
     {
-        0.0f,0.0f,0.0f,-viewport_X / 2,
-        0.0f,0.0f,0.0f,-viewport_Y / 2,
-        0.0f,0.0f,0.0f,-near,         // 这里z只平移near的原因是在Metal中，视锥Z方向上的距离是[0,1]而非[-1,1]
-        0.0f,0.0f,0.0f,1.0f
+        1.0f,0.0f,0.0f,-(r + l) / 2.0f,
+        0.0f,1.0f,0.0f,-(t + b) / 2.0f,
+        0.0f,0.0f,1.0f,-near,         // 这里z只平移near的原因是在Metal中，视锥Z方向上的距离是[0,1]而非[-1,1]
+        0.0f,0.0f,0.0f,1.0f,
     };
     Matrix4x4f orthoTranslateMatrix;
     orthoTranslateMatrix>>orthoTransMatrixItems;
+    /** S_ortho  正交投影的frustum的缩放矩阵*/
     float orthoScaleMatrixItems[16] =
     {
-        2 / viewport_X,0.0f,0.0f,0.0f,
-        0.0f,2 / viewport_Y,0.0f,0.0f,
-        0.0f,0.0f,1 / (far - near),0.0f,  // 这里z只缩放1/(far-near）也是因为视锥Z方向上的距离是[0,1]而非[-1,1]
+        2.0f / (r - l),0.0f,0.0f,0.0f,
+        0.0f,2.0f / (t - b),0.0f,0.0f,
+        0.0f,0.0f,1.0f / (far -near),0.0f,  // 这里z只缩放1/(far-near)也是因为视锥Z方向上的距离是[0,1]而非[-1,1]
         0.0f,0.0f,0.0f,1.0f,
     };
     Matrix4x4f orthoScaleMatrix;
     orthoScaleMatrix>>orthoScaleMatrixItems;
+    /** 正交投影的Frustum矩阵*/
     Matrix4x4f orthoProjectionMatrix;
-    Matrix4x4f::multiply(orthoTranslateMatrix, orthoScaleMatrix, orthoProjectionMatrix);
+    Matrix4x4f::multiply(orthoScaleMatrix, orthoTranslateMatrix, orthoProjectionMatrix);
     return orthoProjectionMatrix;
 }
-Matrix4x4f Camera::getPerspectiveToOrthonormalMatrix() const
+
+Matrix4x4f Camera::getProjectioMatrix() const
 {
-    float perspToOrthoItems[16] =
+    float height = 1.0f / tanf(fov * 0.5f * (M_PI/180.0f));
+    float width = height * aspectRatio;
+    Matrix4x4f m;
+    float ms[16] =
     {
-        near,0.0f,0.0f,0.0f,
-        0.0f,near,0.0f,0.0f,
-        0.0f,0.0f,near + far,near/(near + far),
+        1.0f/width,0,0,0.0f,
+        0.0f,1.0f/height,0,0.0f,
+        0.0f,0.0f,far/(far - near),-near*(far/(far-near)),
         0.0f,0.0f,1.0f,0.0f,
     };
-    Matrix4x4f perspToOrthMatrix;
-    perspToOrthMatrix>>perspToOrthoItems;
-    return perspToOrthMatrix;
+//    float ms[16] =
+//    {
+//        near/width,0,0,0.0f,
+//        0.0f,near/height,0,0.0f,
+//        0.0f,0.0f,far/(far - near),-(2.0f*near*far)/(far-near),
+//        0.0f,0.0f,1.0f,0.0f,
+//    };
+    m>>ms;
+    return m;
 }
