@@ -21,6 +21,8 @@
 
 - 入口：GameViewController.m  -> (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *) event
 
+3. 控制摄像机前后左右移动观察cube，目前摄像机的target hard code为(0,0,0)，up 为(0,1,0);
+
 ## 项目总结
 
 1. iOS的 UI Button ；
