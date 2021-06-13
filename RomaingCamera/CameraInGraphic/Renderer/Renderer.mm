@@ -12,11 +12,14 @@
 // Include header shared between C code here, which executes Metal API commands, and .metal files
 #import "ShaderTypes.h"
 #include "Camera.h"
+
 typedef enum {
     forwardArrow = 1,
     backArrow = 2,
     leftArrow = 3,
     rightArrow = 4,
+    rotatePositiveY = 5,
+    rotateNegativeY = 6,
 }keyName;
 
 @implementation Renderer
@@ -26,6 +29,7 @@ typedef enum {
     id <MTLRenderPipelineState> _pipelineState;
     vector_uint2 _viewportSize;
     id <MTLBuffer> _uniformBuffer;
+    id<MTLBuffer> _indicesBuffer;
     Uniforms* uniform;
     Camera* camera;
 }
@@ -57,13 +61,25 @@ typedef enum {
         _commandQueue = [_device newCommandQueue];
         // 创建uniform buffer
         _uniformBuffer = [_device newBufferWithLength:sizeof(Uniforms) options:MTLResourceStorageModeShared];
+        
+        static const UInt16 indices[] =
+        {
+            0, 1, 2, 2, 3, 0, // front
+            4, 5, 6, 6, 7, 4, // back
+            0, 3, 6, 6, 5, 0, // left
+            1, 4, 7, 7, 2, 1, // right
+            0, 5, 4, 4, 1, 0, // top
+            3, 2, 7, 7, 6, 3, // bottom
+        };
+        
+        _indicesBuffer = [_device newBufferWithBytes:indices length:sizeof(indices) options:MTLResourceStorageModeShared];
         // 创建摄像机
         camera = new Camera(_viewportSize.x, _viewportSize.y);
-        camera->position = Vector3f(0.0f,0.0f,-500.0f);
+        camera->position = Vector3f(0.0f,0.0f,-1000.0f);
         camera->near = 1.0f;
-        camera->far = 1000.0f;
+        camera->far = 1500.0f;
         camera->aspectRatio = (float)_viewportSize.x/(float)_viewportSize.y;
-        camera->target =Vector3f(0,0,0);
+        camera->target = Vector3f(0,0,0);
         camera->up = Vector3f(0,1,0);
     }
     
@@ -76,38 +92,29 @@ typedef enum {
     static const Vertex triangleVertices[] =
     {
         // 3D positions,    RGBA colors
-        { { -200.0, 200.0, 0.0f, 1.0 }, { 1, 0, 0, 1 } },
-        { { 200.0 , 200.0, 0.0f, 1.0 }, { 0, 1, 0, 1 } },
-        { { 200.0, -200.0, 0.0f, 1.0 }, { 0, 0, 1, 1 } },
-        { { -200.0, -200.0, 0.0f, 1.0 }, { 0, 1, 0, 1 } },
+        { { -200.0, 200.0, -200.0f, 1.0 }, { 0, 1, 1, 1 } },
+        { { 200.0 , 200.0, -200.0f, 1.0 }, { 0, 0, 1, 1 } },
+        { { 200.0, -200.0, -200.0f, 1.0 }, { 1, 0, 1, 1 } },
+        { { -200.0, -200.0, -200.0f, 1.0 }, { 1, 1, 1, 1 } },
         { { 200.0 , 200.0, 200.0f, 1.0 }, { 0, 1, 0, 1 } },
-        { { -200.0, 200.0, 200.0f, 1.0 }, { 1, 0, 0, 1 } },
-        { { -200.0, -200.0, 200.0f, 1.0 }, { 0, 1, 0, 1 } },
-        { { 200.0, -200.0, 200.0, 1.0 }, { 0, 0, 1, 1 } },
+        { { -200.0, 200.0, 200.0f, 1.0 }, { 0, 0, 0, 1 } },
+        { { -200.0, -200.0, 200.0f, 1.0 }, { 1, 0, 0, 1 } },
+        { { 200.0, -200.0, 200.0, 1.0 }, { 1, 1, 0, 1 } },
     };
-    static const UInt16 indices[] =
-    {
-        0, 1, 2, 2, 3, 0, // front
-        4, 5, 6, 6, 7, 4, // back
-        0, 3, 6, 6, 5, 0, // left
-        1, 4, 7, 7, 2, 1, // right
-        0, 5, 4, 4, 1, 0, // top
-        3, 2, 7, 7, 6, 3, // bottom
-    };
-    uniform = (Uniforms*)_uniformBuffer.contents;
-    uniform->viewMatrix = camera->getViewMatrix().transNativeMatrix();
-    uniform->projectinMatrix = camera->getProjectioMatrix().transNativeMatrix();
+    [self updateCameraState];
+    
     id<MTLCommandBuffer> commandBuffer = [_commandQueue commandBuffer];
     commandBuffer.label = @"EwanCommand";
     MTLRenderPassDescriptor *renderPassDescriptor = view.currentRenderPassDescriptor;
     if (renderPassDescriptor != nil) {
         id<MTLRenderCommandEncoder> renderEncoder = [commandBuffer renderCommandEncoderWithDescriptor:renderPassDescriptor];
         renderEncoder.label = @"EwanRenderEncoder";
+        [renderEncoder setFrontFacingWinding:MTLWindingClockwise];
+        [renderEncoder setCullMode:MTLCullModeBack];
         [renderEncoder setRenderPipelineState:_pipelineState];
         [renderEncoder setVertexBuffer:_uniformBuffer offset:0 atIndex:1];
         [renderEncoder setVertexBytes:triangleVertices length:sizeof(triangleVertices) atIndex:0];
-        id<MTLBuffer> indicesBuffer = [_device newBufferWithBytes:indices length:sizeof(indices) options:MTLResourceStorageModeShared];
-        [renderEncoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle indexCount:36 indexType:MTLIndexTypeUInt16 indexBuffer:indicesBuffer indexBufferOffset:0];
+        [renderEncoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle indexCount:36 indexType:MTLIndexTypeUInt16 indexBuffer:_indicesBuffer indexBufferOffset:0];
         [renderEncoder endEncoding];
         [commandBuffer presentDrawable:view.currentDrawable];
     }
@@ -138,9 +145,24 @@ typedef enum {
             break;
         case rightArrow:
             camera->position.x += 10.0f;
-            break;;
+            break;
+        case rotatePositiveY:
+            camera->rotation.y -= 10.0f;
+            break;
+        case rotateNegativeY:
+            camera->rotation.y += 10.0f;
+            break;
         default:
             break;
     }
+}
+-(void)updateCameraState
+{
+    uniform = (Uniforms*)_uniformBuffer.contents;
+    camera->rotation.x += 1.0f;
+    uniform->modelMatrix = camera->getModelMatrix().transNativeMatrix();
+    uniform->viewMatrix = camera->getViewMatrix().transNativeMatrix();
+    uniform->projectinMatrix = camera->getProjectioMatrix().transNativeMatrix();
+    //uniform->projectinMatrix = camera->getOrthonormalMatrix().transNativeMatrix();
 }
 @end

@@ -22,6 +22,7 @@
 - 入口：GameViewController.m  -> (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *) event
 
 3. 控制摄像机前后左右移动观察cube，目前摄像机的target hard code为(0,0,0)，up 为(0,1,0);
+4. 控制摄像机围绕target进行绕Y轴左右旋转；
 
 ## 项目总结
 

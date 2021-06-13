@@ -26,11 +26,11 @@ vertexShader(uint vertexID[[vertex_id]],constant Vertex *vertices [[buffer(Verte
 {
     VertexData out;
     vector_float4 pos = vertices[vertexID].position;
-    out.position =  uniform->projectinMatrix * uniform->viewMatrix * pos;
-    out.position.x /= out.position.w;
-    out.position.y /= out.position.w;
-    out.position.z /= out.position.w;
-    out.position.w /= out.position.w;
+    out.position =  uniform->projectinMatrix * uniform->viewMatrix * uniform->modelMatrix *pos;
+//    out.position.x /= out.position.w;
+//    out.position.y /= out.position.w;
+//    out.position.z /= out.position.w;
+//    out.position.w /= out.position.w;
     out.color = vertices[vertexID].color;
     return out;
 }

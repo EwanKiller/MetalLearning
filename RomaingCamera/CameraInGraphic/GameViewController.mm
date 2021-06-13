@@ -80,6 +80,24 @@
     [buttonRightwards setTitle:@"pressed" forState:UIControlStateHighlighted];
     [buttonRightwards addTarget:self action:@selector(rightwardButtonPressed) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttonRightwards];
+    
+    // rotate positive Y axis button
+    UIButton* buttonRotatePositiveYaxis = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    buttonRotatePositiveYaxis.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+    [buttonRotatePositiveYaxis setFrame:CGRectMake(210, 300, 80, 60)];
+    [buttonRotatePositiveYaxis setTitle:@"rotate positive Y" forState:UIControlStateNormal];
+    [buttonRotatePositiveYaxis setTitle:@"pressed" forState:UIControlStateHighlighted];
+    [buttonRotatePositiveYaxis addTarget:self action:@selector(rotatePositiveYPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:buttonRotatePositiveYaxis];
+    
+    // rotate negative Y axis button
+    UIButton* buttonRotateNegativeYaxis = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    buttonRotateNegativeYaxis.backgroundColor = [UIColor colorWithWhite:0 alpha:0];
+    [buttonRotateNegativeYaxis setFrame:CGRectMake(30, 300, 80, 60)];
+    [buttonRotateNegativeYaxis setTitle:@"rotate positive Y" forState:UIControlStateNormal];
+    [buttonRotateNegativeYaxis setTitle:@"pressed" forState:UIControlStateHighlighted];
+    [buttonRotateNegativeYaxis addTarget:self action:@selector(rotateNegativeYPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:buttonRotateNegativeYaxis];
 }
 
 - (void)forwardButtonPressed
@@ -101,6 +119,16 @@
 {
     [_renderer sendKeboardValue:4];
     NSLog(@"rightwards");
+}
+- (void)rotatePositiveYPressed
+{
+    [_renderer sendKeboardValue:5];
+    NSLog(@"rotate positive Y-axis");
+}
+- (void)rotateNegativeYPressed
+{
+    [_renderer sendKeboardValue:6];
+    NSLog(@"rotate negative Y-axis");
 }
 
 

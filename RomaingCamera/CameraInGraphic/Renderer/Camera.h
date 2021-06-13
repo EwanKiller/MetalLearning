@@ -27,6 +27,7 @@ public:
     
     Camera(const float viewportX, const float viewportY);
     ~Camera();
+    Matrix4x4f getModelMatrix() const;
     Matrix4x4f getViewMatrix() const;
     Matrix4x4f getOrthonormalMatrix() const;
     Matrix4x4f getProjectioMatrix() const;

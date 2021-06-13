@@ -23,7 +23,45 @@ Camera::~Camera()
 {
     
 }
-
+Matrix4x4f Camera::getModelMatrix() const
+{
+    Vector3f factor = Vector3f(1.0f, 1.0f, 1.0f);
+    Matrix4x4f scaleM;
+    float scaleItems[16] =
+    {
+        factor.x,0.0f,0.0f,0.0f,
+        0.0f,factor.y,0.0f,0.0f,
+        0.0f,0.0f,factor.z,0.0f,
+        0.0f,0.0f,0.0f,1.0f,
+    };
+    scaleM>>scaleItems;
+    float angle = rotation.x * (M_PI / 180.0f); // 这里借用下camera的rotation.x！
+    Matrix4x4f rotateXM;
+    float rotateXItems[16] =
+    {
+        1.0f,0.0f,0.0f,0.0f,
+        0.0f,cosf(angle),sinf(angle),0.0f,
+        0.0f,-sinf(angle),cosf(angle),0.0f,
+        0.0f,0.0f,0.0f,1.0f,
+    };
+    rotateXM>>rotateXItems;
+    Vector3f offset = Vector3f(0.0f,0.0f,0.0f);
+    float translateItems[16] =
+    {
+        1.0f,0.0f,0.0f,offset.x,
+        0.0f,1.0f,0.0f,offset.y,
+        0.0f,0.0f,1.0f,offset.z,
+        0.0f,0.0f,0.0f,1.0f,
+    };
+    Matrix4x4f translateM;
+    translateM>>translateItems;
+    
+    Matrix4x4f modelMatrix;
+    Matrix4x4f sr;
+    Matrix4x4f::multiply(rotateXM, scaleM, sr);
+    Matrix4x4f::multiply(translateM, sr, modelMatrix);
+    return modelMatrix;
+}
 Matrix4x4f Camera::getViewMatrix() const
 {
     float viewTransMatrixItems[16] =
@@ -55,6 +93,19 @@ Matrix4x4f Camera::getViewMatrix() const
     viewRotateMatrix>>viewRotateMatrixItems;
     Matrix4x4f viewMatrix;
     Matrix4x4f::multiply(viewTranslateMatrix, viewRotateMatrix, viewMatrix);
+    
+    Matrix4x4f viewRotateY;
+    float angle = rotation.y * (M_PI / 180.0f);
+    float viewRotYitems[16] =
+    {
+        cosf(angle),0.0f,-sinf(angle),0.0f,
+        0.0f,1.0f,0.0f,0.0f,
+        sinf(angle),0.0f,cosf(angle),0.0f,
+        0.0f,0.0f,0.0f,1.0f,
+    };
+    viewRotateY>>viewRotYitems;
+    Matrix4x4f::multiply(viewRotateY, viewRotateMatrix, viewMatrix);
+    Matrix4x4f::multiply(viewTranslateMatrix, viewMatrix, viewMatrix);
     return viewMatrix;
 }
 
