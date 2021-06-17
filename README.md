@@ -4,6 +4,13 @@
 
 ## Demo list
 
-- CameraInGraphic
+- RoamingCamera
  
-  - 3D空间中的漫游摄像机
+  - Metal with OC , C++ 
+
+- MetalDemosAPP
+
+  - use Swift for UI logic 
+  - OC is bridge between Swift and C++ 
+  - Metal APIs called by OC
+  - All kands of implements by c++
