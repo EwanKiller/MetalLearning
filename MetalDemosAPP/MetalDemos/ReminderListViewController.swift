@@ -9,13 +9,9 @@ class ReminderListViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Self.showTransformSceneSegueIdentifier,
-           let destination = segue.destination as? ReminderTransformSceneViewController{
+           let destination = segue.destination as? TransformSceneViewController{
                 destination.configue()
                 }
-//            let cell = sender as? UITableViewCell,
-//            let indexPath = tableView.indexPath(for: cell) {
-//            let reminder = Reminder.testData[indexPath.row]
-//            destination.configue()
 //        }
     }
 }

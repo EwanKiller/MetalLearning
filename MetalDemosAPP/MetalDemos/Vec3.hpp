@@ -10,17 +10,16 @@
 
 #include <stdio.h>
 
-class Vec3 {
+class Vec3
+{
     float x;
     float y;
     float z;
     
-public:
     Vec3();
     ~Vec3();
     Vec3(const float x, const float y, const float z);
     Vec3(const float *array);
     Vec3(const Vec3 &vec);
 };
-
 #endif /* Vec3_hpp */

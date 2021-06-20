@@ -1,6 +1,12 @@
 //
-//  Use this file to import your target's public headers that you would like to expose to Swift.
+//  MetalDemos-Bridging-Header.h
+//  MetalDemos
 //
-#include "Vec3.hpp"
-#include "Vec4.hpp"
-#include "Mat4.hpp"
+//  Created by ThisEwan on 2021/6/19.
+//
+
+#ifndef MetalDemos_Bridging_Header_h
+#define MetalDemos_Bridging_Header_h
+
+
+#endif /* MetalDemos_Bridging_Header_h */
