@@ -12,7 +12,6 @@ class ReminderListViewController: UITableViewController {
            let destination = segue.destination as? TransformSceneViewController{
                 destination.configue()
                 }
-//        }
     }
 }
 

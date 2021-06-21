@@ -57,3 +57,22 @@ Mat4::Mat4(const float *array)
     m[14] = array[11];
     m[15] = array[15];
 }
+Mat4::Mat4(const Mat4 &mat)
+{
+    m[0] = mat.m[0];
+    m[1] = mat.m[1];
+    m[2] = mat.m[2];
+    m[3] = mat.m[3];
+    m[4] = mat.m[4];
+    m[5] = mat.m[5];
+    m[6] = mat.m[6];
+    m[7] = mat.m[7];
+    m[8] = mat.m[8];
+    m[9] = mat.m[9];
+    m[10] = mat.m[10];
+    m[11] = mat.m[11];
+    m[12] = mat.m[12];
+    m[13] = mat.m[13];
+    m[14] = mat.m[14];
+    m[15] = mat.m[15];
+}

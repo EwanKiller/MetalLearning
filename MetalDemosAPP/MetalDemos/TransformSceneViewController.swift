@@ -9,9 +9,12 @@ import UIKit
 
 class TransformSceneViewController: UIViewController {
     
+    private var transformSceneViewController: TransformSceneViewControllerOC?
+    
     override func viewDidLoad() {
-        
-        NSLog("configue")
+        super.viewDidLoad()
+        transformSceneViewController = TransformSceneViewControllerOC()
+        transformSceneViewController?.onViewDidload(self);
     }
     
     func configue() {

@@ -8,8 +8,9 @@
 #ifndef Renderer_h
 #define Renderer_h
 #import <MetalKit/MetalKit.h>
+#import "ShaderTypes.h"
 
-@interface Renderer : NSObject<MTKViewDelegate>
+@interface TransformSceneRenderer : NSObject<MTKViewDelegate>
 
 -(nonnull instancetype)initWithMetalKitView:(nonnull MTKView*)view;
 

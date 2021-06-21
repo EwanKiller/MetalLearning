@@ -19,3 +19,6 @@ Vec4::Vec4(const float x, const float y, const float z, const float w):x(x),y(y)
 Vec4::Vec4(const float *array):x(array[0]),y(array[1]),z(array[2]),w(array[3])
 {
 }
+Vec4::Vec4(const Vec4& vec):x(vec.x),y(vec.y),z(vec.z),w(vec.w)
+{
+}

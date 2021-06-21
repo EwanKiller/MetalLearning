@@ -8,5 +8,6 @@
 #ifndef MetalDemos_Bridging_Header_h
 #define MetalDemos_Bridging_Header_h
 
+#import "TransformSceneViewControllerOC.h"
 
 #endif /* MetalDemos_Bridging_Header_h */
