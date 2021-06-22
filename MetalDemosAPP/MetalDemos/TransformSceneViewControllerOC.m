@@ -26,7 +26,7 @@
         vc.view = [[UIView alloc] initWithFrame:vc.view.frame];
         return;
     }
-    _renderer = [[TransformSceneRenderer init] initWithMetalKitView:_mtkView];
+    _renderer = [[TransformSceneRenderer alloc] initWithMetalKitView:_mtkView];
     [_renderer mtkView:_mtkView drawableSizeWillChange:_mtkView.bounds.size];
     _mtkView.delegate = _renderer;
 }

@@ -22,3 +22,7 @@ Vec4::Vec4(const float *array):x(array[0]),y(array[1]),z(array[2]),w(array[3])
 Vec4::Vec4(const Vec4& vec):x(vec.x),y(vec.y),z(vec.z),w(vec.w)
 {
 }
+Vec4 Vec4::operator-(const Vec4 &vec)const
+{
+    return Vec4(x - vec.x, y - vec.y, z - vec.z, w - vec.w);
+}

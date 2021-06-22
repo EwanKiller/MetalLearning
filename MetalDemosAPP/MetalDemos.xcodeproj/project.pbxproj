@@ -15,6 +15,8 @@
 		40FBAFE3267DE0EA002B7821 /* Vec4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40FBAFE0267DE0EA002B7821 /* Vec4.cpp */; };
 		40FBAFEA267DFA79002B7821 /* TransformSceneRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 40FBAFE9267DFA79002B7821 /* TransformSceneRenderer.mm */; };
 		40FBAFED2680D34C002B7821 /* TransformSceneViewControllerOC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FBAFEC2680D34C002B7821 /* TransformSceneViewControllerOC.m */; };
+		40FBAFF126822094002B7821 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40FBAFEF26822094002B7821 /* Camera.cpp */; };
+		40FBAFF326823456002B7821 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 40FBAFF226823456002B7821 /* Shaders.metal */; };
 		AADE2AB825BF29F200BDC991 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE2AB725BF29F200BDC991 /* AppDelegate.swift */; };
 		AADE2ABA25BF29F200BDC991 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE2AB925BF29F200BDC991 /* SceneDelegate.swift */; };
 		AADE2ABC25BF29F200BDC991 /* ReminderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE2ABB25BF29F200BDC991 /* ReminderListViewController.swift */; };
@@ -41,6 +43,9 @@
 		40FBAFEB2680D33F002B7821 /* TransformSceneViewControllerOC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransformSceneViewControllerOC.h; sourceTree = "<group>"; };
 		40FBAFEC2680D34C002B7821 /* TransformSceneViewControllerOC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransformSceneViewControllerOC.m; sourceTree = "<group>"; };
 		40FBAFEE2680DFE8002B7821 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
+		40FBAFEF26822094002B7821 /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
+		40FBAFF026822094002B7821 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
+		40FBAFF226823456002B7821 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		631D2DA2A44101B263401204 /* Pods-MetalDemos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetalDemos.release.xcconfig"; path = "Target Support Files/Pods-MetalDemos/Pods-MetalDemos.release.xcconfig"; sourceTree = "<group>"; };
 		889419F291760BB65F3715D6 /* libPods-MetalDemos.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MetalDemos.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA07BCD525F29F91004EDB45 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -85,6 +90,7 @@
 				40FBAFEB2680D33F002B7821 /* TransformSceneViewControllerOC.h */,
 				40FBAFEC2680D34C002B7821 /* TransformSceneViewControllerOC.m */,
 				40FBAFEE2680DFE8002B7821 /* ShaderTypes.h */,
+				40FBAFF226823456002B7821 /* Shaders.metal */,
 			);
 			name = MetalWithOC;
 			sourceTree = "<group>";
@@ -98,6 +104,8 @@
 				40FBAFDC267DE0E9002B7821 /* Vec3.hpp */,
 				40FBAFE0267DE0EA002B7821 /* Vec4.cpp */,
 				40FBAFDF267DE0EA002B7821 /* Vec4.hpp */,
+				40FBAFEF26822094002B7821 /* Camera.cpp */,
+				40FBAFF026822094002B7821 /* Camera.hpp */,
 			);
 			name = CPP;
 			sourceTree = "<group>";
@@ -258,8 +266,10 @@
 			files = (
 				40FBAFE3267DE0EA002B7821 /* Vec4.cpp in Sources */,
 				AADE2ABC25BF29F200BDC991 /* ReminderListViewController.swift in Sources */,
+				40FBAFF326823456002B7821 /* Shaders.metal in Sources */,
 				AADE2ADE25BF555600BDC991 /* ReminderListCell.swift in Sources */,
 				40FBAFE2267DE0EA002B7821 /* Vec3.cpp in Sources */,
+				40FBAFF126822094002B7821 /* Camera.cpp in Sources */,
 				40F20BFF267B9A0E00EAC188 /* TransformSceneViewController.swift in Sources */,
 				40FBAFED2680D34C002B7821 /* TransformSceneViewControllerOC.m in Sources */,
 				40FBAFE1267DE0EA002B7821 /* Mat4.cpp in Sources */,
