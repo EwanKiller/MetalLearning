@@ -10,6 +10,9 @@
 @interface TransformSceneViewControllerOC : NSObject
 
 -(void)onViewDidload: (UIViewController *)view;
-
+-(void)switchRotateX: (BOOL)isOn;
+-(void)switchRotateY: (BOOL)isOn;
+-(void)switchRotateZ: (BOOL)isOn;
+-(void)scaleModel: (float)scale;
 @end
 

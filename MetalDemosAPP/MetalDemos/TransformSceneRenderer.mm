@@ -74,6 +74,7 @@
         _indicesBuffer = [_device newBufferWithBytes:indices length:sizeof(indices) options:MTLResourceStorageModeShared];
         
         _uniformBuffer = [_device newBufferWithLength:sizeof(Uniforms) options:MTLResourceStorageModeShared];
+        _scale = 1.0f;
         
         [self initCamera];
     }
@@ -126,51 +127,96 @@
 
 -(void)updateMVPMatrix
 {
-    modelRotation += 1.0f;
     uniform = (Uniforms*)_uniformBuffer.contents;
     [self getModelMatrix:uniform];
     uniform->viewMatrix = camera->getViewMatrix().transNativeMatrix();
     uniform->projectinMatrix = camera->getProjectioMatrix().transNativeMatrix();
 }
 
--(void)getModelMatrix:(Uniforms*)uniform
+-(void)getModelMatrix:(Uniforms*_Nullable)uniform
 {
-        Vec3 factor = Vec3(1.0f, 1.0f, 1.0f);
-        Mat4 scaleM;
-        float scaleItems[16] =
-        {
-            factor.x,0.0f,0.0f,0.0f,
-            0.0f,factor.y,0.0f,0.0f,
-            0.0f,0.0f,factor.z,0.0f,
-            0.0f,0.0f,0.0f,1.0f,
-        };
-        scaleM>>scaleItems;
-        float angle = modelRotation * (M_PI / 180.0f);
-        Mat4 rotateXM;
-        float rotateXItems[16] =
-        {
-            1.0f,0.0f,0.0f,0.0f,
-            0.0f,cosf(angle),sinf(angle),0.0f,
-            0.0f,-sinf(angle),cosf(angle),0.0f,
-            0.0f,0.0f,0.0f,1.0f,
-        };
-        rotateXM>>rotateXItems;
-        Vec3 offset = Vec3(0.0f,0.0f,0.0f);
-        float translateItems[16] =
-        {
-            1.0f,0.0f,0.0f,offset.x,
-            0.0f,1.0f,0.0f,offset.y,
-            0.0f,0.0f,1.0f,offset.z,
-            0.0f,0.0f,0.0f,1.0f,
-        };
-        Mat4 translateM;
-        translateM>>translateItems;
+    Vec3 factor = Vec3(_scale, _scale, _scale);
+    Mat4 scaleM;
+    float scaleItems[16] =
+    {
+        factor.x,0.0f,0.0f,0.0f,
+        0.0f,factor.y,0.0f,0.0f,
+        0.0f,0.0f,factor.z,0.0f,
+        0.0f,0.0f,0.0f,1.0f,
+    };
+    scaleM>>scaleItems;
     
-        Mat4 modelMatrix;
-        Mat4 sr;
-        Mat4::multiply(rotateXM, scaleM, sr);
-        Mat4::multiply(translateM, sr, modelMatrix);
-        uniform->modelMatrix = modelMatrix.transNativeMatrix();
+    modelRotation += 1.0f;
+    float angle = modelRotation * (M_PI / 180.0f);
+    
+    float identityItems[16] =
+    {
+        1.0f,0.0f,0.0f,0.0f,
+        0.0f,1.0f,0.0f,0.0f,
+        0.0f,0.0f,1.0f,0.0f,
+        0.0f,0.0f,0.0f,1.0f,
+    };
+    
+    Mat4 rotateXM;
+    float rotateXItems[16] =
+    {
+        1.0f,0.0f,0.0f,0.0f,
+        0.0f,cosf(angle),sinf(angle),0.0f,
+        0.0f,-sinf(angle),cosf(angle),0.0f,
+        0.0f,0.0f,0.0f,1.0f,
+    };
+    if (_xAxis)
+        rotateXM>>rotateXItems;
+    else
+        rotateXM>>identityItems;
+    
+    Mat4 rotateYM;
+    float rotateYItems[16] =
+    {
+        cosf(angle),0.0f,-sinf(angle),0.0f,
+        0.0f,1.0f,0.0f,0.0f,
+        sinf(angle),0.0f,cosf(angle),0.0f,
+        0.0f,0.0f,0.0f,1.0f,
+    };
+    if (_yAxis)
+        rotateYM>>rotateYItems;
+    else
+        rotateYM>>identityItems;
+    
+    Mat4 rotateZM;
+    float rotateZItems[16] =
+    {
+        cosf(angle),sinf(angle),0.0f,0.0f,
+        -sinf(angle),cosf(angle),0.0f,0.0f,
+        0.0f,0.0f,1.0f,0.0f,
+        0.0f,0.0f,0.0f,1.0f,
+    };
+    if(_zAxis)
+        rotateZM>>rotateZItems;
+    else
+        rotateZM>>identityItems;
+    
+    Mat4 rotateXY;
+    Mat4::multiply(rotateYM, rotateXM, rotateXY);
+    Mat4 rotateXYZ;
+    Mat4::multiply(rotateZM, rotateXY, rotateXYZ);
+
+    Vec3 offset = Vec3(0.0f,0.0f,0.0f);
+    float translateItems[16] =
+    {
+        1.0f,0.0f,0.0f,offset.x,
+        0.0f,1.0f,0.0f,offset.y,
+        0.0f,0.0f,1.0f,offset.z,
+        0.0f,0.0f,0.0f,1.0f,
+    };
+    Mat4 translateM;
+    translateM>>translateItems;
+    
+    Mat4 modelMatrix;
+    Mat4 sr;
+    Mat4::multiply(rotateXYZ, scaleM, sr);
+    Mat4::multiply(translateM, sr, modelMatrix);
+    uniform->modelMatrix = modelMatrix.transNativeMatrix();
 }
 
 @end

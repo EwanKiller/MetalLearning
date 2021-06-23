@@ -31,4 +31,20 @@
     _mtkView.delegate = _renderer;
 }
 
+- (void)switchRotateX:(BOOL)isOn
+{
+    _renderer.xAxis = isOn;
+}
+-(void)switchRotateY:(BOOL)isOn
+{
+    _renderer.yAxis = isOn;
+}
+-(void)switchRotateZ:(BOOL)isOn
+{
+    _renderer.zAxis = isOn;
+}
+-(void)scaleModel:(float)scale
+{
+    _renderer.scale = scale;
+}
 @end

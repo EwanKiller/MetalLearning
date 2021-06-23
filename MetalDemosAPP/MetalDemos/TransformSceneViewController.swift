@@ -22,9 +22,17 @@ class TransformSceneViewController: UIViewController {
         NSLog("configue")
     }
     
-    @IBAction func Start(_ sender: Any) {
-        
-        NSLog("Start Transform")
+    @IBAction func RotateAroundX(_ sender: UISwitch) {
+        transformSceneViewController?.switchRotateX(sender.isOn)
+    }
+    @IBAction func RotateAroundY(_ sender: UISwitch) {
+        transformSceneViewController?.switchRotateY(sender.isOn)
+    }
+    @IBAction func RotateAroundZ(_ sender: UISwitch) {
+        transformSceneViewController?.switchRotateZ(sender.isOn)
+    }
+    @IBAction func ScaleSlider(_ sender: UISlider) {
+        transformSceneViewController?.scaleModel(sender.value);
     }
 }
 

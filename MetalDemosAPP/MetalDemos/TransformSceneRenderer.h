@@ -11,7 +11,10 @@
 #import "ShaderTypes.h"
 
 @interface TransformSceneRenderer : NSObject<MTKViewDelegate>
-
+@property bool xAxis;
+@property bool yAxis;
+@property bool zAxis;
+@property float scale;
 -(nonnull instancetype)initWithMetalKitView:(nonnull MTKView*)view;
 
 @end
