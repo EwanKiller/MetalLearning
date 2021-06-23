@@ -17,6 +17,8 @@
 		40FBAFED2680D34C002B7821 /* TransformSceneViewControllerOC.m in Sources */ = {isa = PBXBuildFile; fileRef = 40FBAFEC2680D34C002B7821 /* TransformSceneViewControllerOC.m */; };
 		40FBAFF126822094002B7821 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40FBAFEF26822094002B7821 /* Camera.cpp */; };
 		40FBAFF326823456002B7821 /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 40FBAFF226823456002B7821 /* Shaders.metal */; };
+		40FBAFF72683822A002B7821 /* RoamingCameraSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FBAFF62683822A002B7821 /* RoamingCameraSceneViewController.swift */; };
+		40FBAFF926839539002B7821 /* ReminderListCell1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FBAFF826839539002B7821 /* ReminderListCell1.swift */; };
 		AADE2AB825BF29F200BDC991 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE2AB725BF29F200BDC991 /* AppDelegate.swift */; };
 		AADE2ABA25BF29F200BDC991 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE2AB925BF29F200BDC991 /* SceneDelegate.swift */; };
 		AADE2ABC25BF29F200BDC991 /* ReminderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADE2ABB25BF29F200BDC991 /* ReminderListViewController.swift */; };
@@ -46,6 +48,8 @@
 		40FBAFEF26822094002B7821 /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		40FBAFF026822094002B7821 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
 		40FBAFF226823456002B7821 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		40FBAFF62683822A002B7821 /* RoamingCameraSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoamingCameraSceneViewController.swift; sourceTree = "<group>"; };
+		40FBAFF826839539002B7821 /* ReminderListCell1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListCell1.swift; sourceTree = "<group>"; };
 		631D2DA2A44101B263401204 /* Pods-MetalDemos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetalDemos.release.xcconfig"; path = "Target Support Files/Pods-MetalDemos/Pods-MetalDemos.release.xcconfig"; sourceTree = "<group>"; };
 		889419F291760BB65F3715D6 /* libPods-MetalDemos.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MetalDemos.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA07BCD525F29F91004EDB45 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -148,11 +152,13 @@
 				AADE2AB925BF29F200BDC991 /* SceneDelegate.swift */,
 				AADE2ABB25BF29F200BDC991 /* ReminderListViewController.swift */,
 				AADE2ADD25BF555600BDC991 /* ReminderListCell.swift */,
+				40FBAFF826839539002B7821 /* ReminderListCell1.swift */,
 				AADE2ACD25BF2CA700BDC991 /* Reminder.swift */,
 				AADE2ABD25BF29F200BDC991 /* Main.storyboard */,
 				AADE2AC025BF29F500BDC991 /* Assets.xcassets */,
 				AADE2AC225BF29F500BDC991 /* LaunchScreen.storyboard */,
 				40F20BFE267B9A0E00EAC188 /* TransformSceneViewController.swift */,
+				40FBAFF62683822A002B7821 /* RoamingCameraSceneViewController.swift */,
 			);
 			path = MetalDemos;
 			sourceTree = "<group>";
@@ -264,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40FBAFF926839539002B7821 /* ReminderListCell1.swift in Sources */,
 				40FBAFE3267DE0EA002B7821 /* Vec4.cpp in Sources */,
 				AADE2ABC25BF29F200BDC991 /* ReminderListViewController.swift in Sources */,
 				40FBAFF326823456002B7821 /* Shaders.metal in Sources */,
@@ -272,6 +279,7 @@
 				40FBAFF126822094002B7821 /* Camera.cpp in Sources */,
 				40F20BFF267B9A0E00EAC188 /* TransformSceneViewController.swift in Sources */,
 				40FBAFED2680D34C002B7821 /* TransformSceneViewControllerOC.m in Sources */,
+				40FBAFF72683822A002B7821 /* RoamingCameraSceneViewController.swift in Sources */,
 				40FBAFE1267DE0EA002B7821 /* Mat4.cpp in Sources */,
 				AADE2AB825BF29F200BDC991 /* AppDelegate.swift in Sources */,
 				AADE2ABA25BF29F200BDC991 /* SceneDelegate.swift in Sources */,

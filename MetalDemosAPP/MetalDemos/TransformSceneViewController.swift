@@ -18,7 +18,6 @@ class TransformSceneViewController: UIViewController {
     }
     
     func configue() {
-        
         NSLog("configue")
     }
     
