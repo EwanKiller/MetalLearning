@@ -1,16 +1,7 @@
-# Metal Learning
+# Metal Learning Demos
 
-- Metal learning demos
+- Creating a Navigation List for different Metal demos
 
 ## Demo list
 
-- RoamingCamera
- 
-  - Metal with OC , C++ 
-
-- MetalDemosAPP
-
-  - use Swift for UI logic 
-  - OC is bridge between Swift and C++ 
-  - Metal APIs called by OC
-  - All kands of implements by c++
+- Control Cube and Roaming Camera
