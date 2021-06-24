@@ -6,17 +6,12 @@ import UIKit
 
 class ReminderListViewController: UITableViewController {
     static let showTransformSceneSegueIdentifier = "ShowTransformSceneSegue"
-    static let showRoamingCameraSceneSegueIdentifier = "ShowRoamingCameraSceneSegue"
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == Self.showTransformSceneSegueIdentifier,
            let destination = segue.destination as? TransformSceneViewController {
                 destination.configue()
                 }
-        else if segue.identifier == Self.showRoamingCameraSceneSegueIdentifier,
-           let destination = segue.destination as? RoamingCameraSceneViewController {
-            destination.configue()
-        }
     }
 }
 

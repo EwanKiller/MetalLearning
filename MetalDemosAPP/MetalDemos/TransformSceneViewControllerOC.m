@@ -47,4 +47,28 @@
 {
     _renderer.scale = scale;
 }
+-(void)onForward
+{
+    [_renderer onForward];
+}
+-(void)onBackward
+{
+    [_renderer onBackward];
+}
+-(void)onLeftward
+{
+    [_renderer onLeftward];
+}
+-(void)onRightward
+{
+    [_renderer onRightward];
+}
+-(void)onTurnLeft
+{
+    [_renderer onTurnLeft];
+}
+-(void)onTurnRight
+{
+    [_renderer onTurnRight];
+}
 @end

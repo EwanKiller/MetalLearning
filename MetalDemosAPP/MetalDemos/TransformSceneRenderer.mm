@@ -218,5 +218,28 @@
     Mat4::multiply(translateM, sr, modelMatrix);
     uniform->modelMatrix = modelMatrix.transNativeMatrix();
 }
-
+- (void)onForward
+{
+    camera->position.z += 50.0f;
+}
+- (void)onBackward
+{
+    camera->position.z -= 50.0f;
+}
+- (void)onLeftward
+{
+    camera->position.x -= 30.0f;
+}
+- (void)onRightward
+{
+    camera->position.x += 30.0f;
+}
+- (void)onTurnLeft
+{
+    camera->rotation.y += 10.0f;
+}
+- (void)onTurnRight
+{
+    camera->rotation.y -= 10.0f;
+}
 @end

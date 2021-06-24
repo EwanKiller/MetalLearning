@@ -16,6 +16,12 @@
 @property bool zAxis;
 @property float scale;
 -(nonnull instancetype)initWithMetalKitView:(nonnull MTKView*)view;
+-(void)onForward;
+-(void)onBackward;
+-(void)onLeftward;
+-(void)onRightward;
+-(void)onTurnLeft;
+-(void)onTurnRight;
 
 @end
 

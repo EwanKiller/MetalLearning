@@ -33,5 +33,23 @@ class TransformSceneViewController: UIViewController {
     @IBAction func ScaleSlider(_ sender: UISlider) {
         transformSceneViewController?.scaleModel(sender.value);
     }
+    @IBAction func onForward() {
+        transformSceneViewController?.onForward();
+    }
+    @IBAction func onBackward() {
+        transformSceneViewController?.onBackward();
+    }
+    @IBAction func onLeftward() {
+        transformSceneViewController?.onLeftward();
+    }
+    @IBAction func onRightward() {
+        transformSceneViewController?.onRightward();
+    }
+    @IBAction func onTurnLeft() {
+        transformSceneViewController?.onTurnLeft();
+    }
+    @IBAction func onTurnRight() {
+        transformSceneViewController?.onTurnRight();
+    }
 }
 

@@ -14,5 +14,11 @@
 -(void)switchRotateY: (BOOL)isOn;
 -(void)switchRotateZ: (BOOL)isOn;
 -(void)scaleModel: (float)scale;
+-(void)onForward;
+-(void)onBackward;
+-(void)onLeftward;
+-(void)onRightward;
+-(void)onTurnLeft;
+-(void)onTurnRight;
 @end
 
