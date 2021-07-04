@@ -19,10 +19,11 @@ public:
     
     Vec3();
     ~Vec3();
-    Vec3(const float x, const float y, const float z);
+    Vec3(float x, float y, float z);
+    //Vec3(const float x, const float y, const float z);
     Vec3(const float *array);
     Vec3(const Vec3 &vec);
-    
+    void operator>>(Vec3& vec);
     Vec3 operator-(const Vec3& vec) const;
     void normalize();
     static void cross(const Vec3& lhs, const Vec3& rhs, Vec3& outResult);

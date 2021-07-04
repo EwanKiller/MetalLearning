@@ -57,6 +57,7 @@
             { { -200.0, 200.0, 200.0f, 1.0 }, { 0, 0, 0, 1 } },
             { { -200.0, -200.0, 200.0f, 1.0 }, { 1, 0, 0, 1 } },
             { { 200.0, -200.0, 200.0, 1.0 }, { 1, 1, 0, 1 } },
+            
         };
         
         _vertexBuffer = [_device newBufferWithBytes:triangleVertices length:sizeof(triangleVertices) options:MTLStorageModeShared];
@@ -121,7 +122,6 @@
     camera->near = 1.0f;
     camera->far = 1500.0f;
     camera->aspectRatio = (float)_viewportSize.x/(float)_viewportSize.y;
-    camera->target = Vec3(0,0,0);
     camera->up = Vec3(0,1,0);
 }
 
@@ -237,9 +237,13 @@
 - (void)onTurnLeft
 {
     camera->rotation.y += 10.0f;
+    if(camera->rotation.y >= 360.0f)
+        camera->rotation.y -= 360.0f;
 }
 - (void)onTurnRight
 {
     camera->rotation.y -= 10.0f;
+    if (camera->rotation.y <=0)
+        camera->rotation.y += 360.0f;
 }
 @end

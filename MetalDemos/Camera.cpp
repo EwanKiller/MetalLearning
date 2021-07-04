@@ -26,17 +26,12 @@ Camera::~Camera()
 
 Mat4 Camera::getViewMatrix() const
 {
-    float viewTransMatrixItems[16] =
-    {
-        1.0f,0.0f,0.0f,-position.x,
-        0.0f,1.0f,0.0f,-position.y,
-        0.0f,0.0f,1.0f,-position.z,
-        0.0f,0.0f,0.0f,1.0f,
-    };
-    Mat4 viewTranslateMatrix;
-    viewTranslateMatrix>>viewTransMatrixItems;
-    Vec3 lookAt;
-    lookAt = target - position;
+    float angle = rotation.y * (M_PI / 180.0f);
+    Vec3 target(std::sin(angle), 0.0f, std::cos(angle));
+    Vec3 eyePos(0.0f, 0.0f, 0.0f);
+    eyePos.normalize();
+
+    Vec3 lookAt = target - eyePos;
     lookAt.normalize();
     Vec3 lookRight;
     Vec3::cross(up, lookAt, lookRight);
@@ -53,21 +48,23 @@ Mat4 Camera::getViewMatrix() const
     };
     Mat4 viewRotateMatrix;
     viewRotateMatrix>>viewRotateMatrixItems;
+    
+    float l = position.z / std::cos(angle);
+    float x = l * std::sin(angle) + position.x;
+    
+    float viewTransMatrixItems[16] =
+    {
+        1.0f,0.0f,0.0f,-x,
+        0.0f,1.0f,0.0f,-position.y,
+        0.0f,0.0f,1.0f,-position.z,
+        0.0f,0.0f,0.0f,1.0f,
+    };
+    Mat4 viewTranslateMatrix;
+    viewTranslateMatrix>>viewTransMatrixItems;
+    
     Mat4 viewMatrix;
     Mat4::multiply(viewTranslateMatrix, viewRotateMatrix, viewMatrix);
     
-    Mat4 viewRotateY;
-    float angle = rotation.y * (M_PI / 180.0f);
-    float viewRotYitems[16] =
-    {
-        cosf(angle),0.0f,-sinf(angle),0.0f,
-        0.0f,1.0f,0.0f,0.0f,
-        sinf(angle),0.0f,cosf(angle),0.0f,
-        0.0f,0.0f,0.0f,1.0f,
-    };
-    viewRotateY>>viewRotYitems;
-    Mat4::multiply(viewRotateY, viewRotateMatrix, viewMatrix);
-    Mat4::multiply(viewTranslateMatrix, viewMatrix, viewMatrix);
     return viewMatrix;
 }
 

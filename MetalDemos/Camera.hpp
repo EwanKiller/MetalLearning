@@ -24,7 +24,6 @@ public:
     float far;
     float viewport_X;
     float viewport_Y;
-    Vec3 target;
     Vec3 up;
     
     Camera(const float viewportX, const float viewportY);
