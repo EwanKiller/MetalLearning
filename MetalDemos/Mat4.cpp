@@ -9,6 +9,7 @@
 
 Mat4::Mat4()
 {
+    *this = IDENTITY;
 }
 Mat4::~Mat4()
 {
@@ -127,7 +128,18 @@ void Mat4::multiply(const Mat4 &lhs, const Mat4 &rhs, Mat4 &outResult)
 //    }
 }
 
-matrix_float4x4 Mat4::transNativeMatrix()
+const Mat4 Mat4::IDENTITY = Mat4(
+                                 1.0f, 0.0f, 0.0f, 0.0f,
+                                 0.0f, 1.0f, 0.0f, 0.0f,
+                                 0.0f, 0.0f, 1.0f, 0.0f,
+                                 0.0f, 0.0f, 0.0f, 1.0f);
+const Mat4 Mat4::ZERO = Mat4(
+                             0.0f, 0.0f, 0.0f, 0.0f,
+                             0.0f, 0.0f, 0.0f, 0.0f,
+                             0.0f, 0.0f, 0.0f, 0.0f,
+                             0.0f, 0.0f, 0.0f, 0.0f);
+
+matrix_float4x4 Mat4::transformToSimdMat()
 {
     simd_float4 col1;
     col1.x = m[0];

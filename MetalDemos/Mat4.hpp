@@ -20,6 +20,8 @@ public:
     Mat4(const Mat4 &mat);
     Mat4& operator>>(const float item[]);
     static void multiply(const Mat4 &lhs, const Mat4 &rhs, Mat4 &outResult);
-    matrix_float4x4 transNativeMatrix();
+    static const Mat4 IDENTITY;
+    static const Mat4 ZERO;
+    matrix_float4x4 transformToSimdMat();
 };
 #endif /* Mat4_hpp */

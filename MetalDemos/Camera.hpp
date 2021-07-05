@@ -24,13 +24,13 @@ public:
     float far;
     float viewport_X;
     float viewport_Y;
-    Vec3 up;
     
+    Camera() = delete;
     Camera(const float viewportX, const float viewportY);
     ~Camera();
     
     Mat4 getViewMatrix() const;
     Mat4 getOrthonormalMatrix() const;
-    Mat4 getProjectioMatrix() const;
+    Mat4 getProjectiveMatrix() const;
 };
 #endif /* Camera_hpp */
