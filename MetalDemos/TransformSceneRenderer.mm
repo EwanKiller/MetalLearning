@@ -6,9 +6,10 @@
 //
 #import <simd/simd.h>
 #import "TransformSceneRenderer.h"
-#import "Vec3.hpp"
-#import "Mat4.hpp"
-#import "Camera.hpp"
+#import "Vec3.h"
+#import "Mat4.h"
+#import "Camera.h"
+#import "BasePrimitive.h"
 
 @implementation TransformSceneRenderer
 {
@@ -46,34 +47,38 @@
         }
         _commandQueue = [_device newCommandQueue];
         
-        static const Vertex triangleVertices[] =
-        {
-            // 3D positions,    RGBA colors
-            { { -200.0, 200.0, -200.0f, 1.0 }, { 0, 1, 1, 1 } },
-            { { 200.0 , 200.0, -200.0f, 1.0 }, { 0, 0, 1, 1 } },
-            { { 200.0, -200.0, -200.0f, 1.0 }, { 1, 0, 1, 1 } },
-            { { -200.0, -200.0, -200.0f, 1.0 }, { 1, 1, 1, 1 } },
-            { { 200.0 , 200.0, 200.0f, 1.0 }, { 0, 1, 0, 1 } },
-            { { -200.0, 200.0, 200.0f, 1.0 }, { 0, 0, 0, 1 } },
-            { { -200.0, -200.0, 200.0f, 1.0 }, { 1, 0, 0, 1 } },
-            { { 200.0, -200.0, 200.0, 1.0 }, { 1, 1, 0, 1 } },
-            
-        };
+        Cube cube(Vec3(0.0f, 0.0f, 0.0f), 400.0f);
         
-        _vertexBuffer = [_device newBufferWithBytes:triangleVertices length:sizeof(triangleVertices) options:MTLStorageModeShared];
+//        static const Vertex triangleVertices[] =
+//        {
+//            // 3D positions,    RGBA colors
+//            { { -200.0, 200.0, -200.0f, 1.0 }, { 0, 1, 1, 1 } },
+//            { { 200.0 , 200.0, -200.0f, 1.0 }, { 0, 0, 1, 1 } },
+//            { { 200.0, -200.0, -200.0f, 1.0 }, { 1, 0, 1, 1 } },
+//            { { -200.0, -200.0, -200.0f, 1.0 }, { 1, 1, 1, 1 } },
+//            { { 200.0 , 200.0, 200.0f, 1.0 }, { 0, 1, 0, 1 } },
+//            { { -200.0, 200.0, 200.0f, 1.0 }, { 0, 0, 0, 1 } },
+//            { { -200.0, -200.0, 200.0f, 1.0 }, { 1, 0, 0, 1 } },
+//            { { 200.0, -200.0, 200.0, 1.0 }, { 1, 1, 0, 1 } },
+//        
+//        };
+//        
+//        _vertexBuffer = [_device newBufferWithBytes:triangleVertices length:sizeof(triangleVertices) options:MTLStorageModeShared];
         
-        static const UInt16 indices[] =
-        {
-            0, 1, 2, 2, 3, 0, // front
-            4, 5, 6, 6, 7, 4, // back
-            0, 3, 6, 6, 5, 0, // left
-            1, 4, 7, 7, 2, 1, // right
-            0, 5, 4, 4, 1, 0, // top
-            3, 2, 7, 7, 6, 3, // bottom
-        };
+//        static const UInt16 indices[] =
+//        {
+//            0, 1, 2, 2, 3, 0, // front
+//            4, 5, 6, 6, 7, 4, // back
+//            0, 3, 6, 6, 5, 0, // left
+//            1, 4, 7, 7, 2, 1, // right
+//            0, 5, 4, 4, 1, 0, // top
+//            3, 2, 7, 7, 6, 3, // bottom
+//        };
+//
+//        _indicesBuffer = [_device newBufferWithBytes:indices length:sizeof(indices) options:MTLResourceStorageModeShared];
         
-        _indicesBuffer = [_device newBufferWithBytes:indices length:sizeof(indices) options:MTLResourceStorageModeShared];
-        
+        _vertexBuffer = [_device newBufferWithBytes:cube.vertices length:sizeof(cube.vertices) options:MTLStorageModeShared];
+        _indicesBuffer = [_device newBufferWithBytes:cube.indices length:sizeof(cube.indices) options:MTLResourceStorageModeShared];
         _uniformBuffer = [_device newBufferWithLength:sizeof(Uniforms) options:MTLResourceStorageModeShared];
         _scale = 1.0f;
         

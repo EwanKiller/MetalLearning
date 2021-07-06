@@ -5,8 +5,8 @@
 //  Created by ThisEwan on 2021/6/18.
 //
 
-#ifndef Mat4_hpp
-#define Mat4_hpp
+#ifndef Mat4_h
+#define Mat4_h
 
 #include <simd/simd.h>
 
@@ -24,4 +24,4 @@ public:
     static const Mat4 ZERO;
     matrix_float4x4 transformToSimdMat();
 };
-#endif /* Mat4_hpp */
+#endif /* Mat4_h */

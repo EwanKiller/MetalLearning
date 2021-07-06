@@ -5,7 +5,7 @@
 //  Created by ThisEwan on 2021/6/18.
 //
 
-#include "Vec3.hpp"
+#include "Vec3.h"
 
 Vec3::Vec3():x(0.0f),y(0.0f),z(0.0f)
 {

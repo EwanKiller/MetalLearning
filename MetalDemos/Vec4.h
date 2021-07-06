@@ -5,10 +5,10 @@
 //  Created by ThisEwan on 2021/6/18.
 //
 
-#ifndef Vec4_hpp
-#define Vec4_hpp
+#ifndef Vec4_h
+#define Vec4_h
+#include <simd/simd.h>
 
-#include <stdio.h>
 class Vec4 {
 public:
     float x;
@@ -23,5 +23,6 @@ public:
     Vec4(const Vec4& vec);
     
     Vec4 operator-(const Vec4& vec) const;
+    simd_float4 transformSimdVec4f() const;
 };
-#endif /* Vec4_hpp */
+#endif /* Vec4_h */

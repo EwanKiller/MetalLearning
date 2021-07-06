@@ -5,12 +5,11 @@
 //  Created by ThisEwan on 2021/6/22.
 //
 
-#ifndef Camera_hpp
-#define Camera_hpp
+#ifndef Camera_h
+#define Camera_h
 
-#include <stdio.h>
-#include "Vec3.hpp"
-#include "Mat4.hpp"
+#include "Vec3.h"
+#include "Mat4.h"
 
 class Camera
 {
@@ -33,4 +32,4 @@ public:
     Mat4 getOrthonormalMatrix() const;
     Mat4 getProjectiveMatrix() const;
 };
-#endif /* Camera_hpp */
+#endif /* Camera_h */

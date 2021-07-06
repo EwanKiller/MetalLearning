@@ -5,7 +5,7 @@
 //  Created by ThisEwan on 2021/6/22.
 //
 
-#include "Camera.hpp"
+#include "Camera.h"
 
 Camera::Camera(const float viewportX, const float viewportY):position(Vec3(0.0f,0.0f,0.0f)),rotation(Vec3(0.0f,0.0f,0.0f)),scale(Vec3(1.0f,1.0f,1.0f)),fov(90.0f),aspectRatio(1.0f),near(1.0f),far(500.0f),viewport_X(viewportX),viewport_Y(viewportY)
 {

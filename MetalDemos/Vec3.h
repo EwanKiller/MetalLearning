@@ -5,8 +5,8 @@
 //  Created by ThisEwan on 2021/6/18.
 //
 
-#ifndef Vec3_hpp
-#define Vec3_hpp
+#ifndef Vec3_h
+#define Vec3_h
 
 #include <math.h>
 
@@ -28,4 +28,4 @@ public:
     void normalize();
     static void cross(const Vec3& lhs, const Vec3& rhs, Vec3& outResult);
 };
-#endif /* Vec3_hpp */
+#endif /* Vec3_h */

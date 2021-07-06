@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		28D06A49B73B4D443F1D346F /* libPods-MetalDemos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 889419F291760BB65F3715D6 /* libPods-MetalDemos.a */; };
+		409B8EA12693581700C20D75 /* BasePrimitive.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 409B8E9F2693581700C20D75 /* BasePrimitive.cpp */; };
 		40F20BFA267B912000EAC188 /* Icon.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 40F20BF9267B912000EAC188 /* Icon.JPG */; };
 		40F20BFF267B9A0E00EAC188 /* TransformSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F20BFE267B9A0E00EAC188 /* TransformSceneViewController.swift */; };
 		40FBAFE1267DE0EA002B7821 /* Mat4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 40FBAFDB267DE0E9002B7821 /* Mat4.cpp */; };
@@ -28,14 +29,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		409B8E9F2693581700C20D75 /* BasePrimitive.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = BasePrimitive.cpp; sourceTree = "<group>"; };
+		409B8EA02693581700C20D75 /* BasePrimitive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasePrimitive.h; sourceTree = "<group>"; };
 		40F20BF9267B912000EAC188 /* Icon.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Icon.JPG; sourceTree = "<group>"; };
 		40F20BFE267B9A0E00EAC188 /* TransformSceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransformSceneViewController.swift; sourceTree = "<group>"; };
 		40F20C00267BAA8400EAC188 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Base; path = Base.lproj/Info.plist; sourceTree = "<group>"; };
 		40FBAFDB267DE0E9002B7821 /* Mat4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Mat4.cpp; sourceTree = "<group>"; };
-		40FBAFDC267DE0E9002B7821 /* Vec3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vec3.hpp; sourceTree = "<group>"; };
+		40FBAFDC267DE0E9002B7821 /* Vec3.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vec3.h; sourceTree = "<group>"; };
 		40FBAFDD267DE0E9002B7821 /* Vec3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vec3.cpp; sourceTree = "<group>"; };
-		40FBAFDE267DE0EA002B7821 /* Mat4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Mat4.hpp; sourceTree = "<group>"; };
-		40FBAFDF267DE0EA002B7821 /* Vec4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Vec4.hpp; sourceTree = "<group>"; };
+		40FBAFDE267DE0EA002B7821 /* Mat4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Mat4.h; sourceTree = "<group>"; };
+		40FBAFDF267DE0EA002B7821 /* Vec4.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vec4.h; sourceTree = "<group>"; };
 		40FBAFE0267DE0EA002B7821 /* Vec4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vec4.cpp; sourceTree = "<group>"; };
 		40FBAFE4267DE10C002B7821 /* MetalDemos-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MetalDemos-Bridging-Header.h"; sourceTree = "<group>"; };
 		40FBAFE8267DFA6F002B7821 /* TransformSceneRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransformSceneRenderer.h; sourceTree = "<group>"; };
@@ -44,7 +47,7 @@
 		40FBAFEC2680D34C002B7821 /* TransformSceneViewControllerOC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransformSceneViewControllerOC.m; sourceTree = "<group>"; };
 		40FBAFEE2680DFE8002B7821 /* ShaderTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShaderTypes.h; sourceTree = "<group>"; };
 		40FBAFEF26822094002B7821 /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
-		40FBAFF026822094002B7821 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
+		40FBAFF026822094002B7821 /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
 		40FBAFF226823456002B7821 /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		631D2DA2A44101B263401204 /* Pods-MetalDemos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MetalDemos.release.xcconfig"; path = "Target Support Files/Pods-MetalDemos/Pods-MetalDemos.release.xcconfig"; sourceTree = "<group>"; };
 		889419F291760BB65F3715D6 /* libPods-MetalDemos.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MetalDemos.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -99,13 +102,15 @@
 			isa = PBXGroup;
 			children = (
 				40FBAFDB267DE0E9002B7821 /* Mat4.cpp */,
-				40FBAFDE267DE0EA002B7821 /* Mat4.hpp */,
+				40FBAFDE267DE0EA002B7821 /* Mat4.h */,
 				40FBAFDD267DE0E9002B7821 /* Vec3.cpp */,
-				40FBAFDC267DE0E9002B7821 /* Vec3.hpp */,
+				40FBAFDC267DE0E9002B7821 /* Vec3.h */,
 				40FBAFE0267DE0EA002B7821 /* Vec4.cpp */,
-				40FBAFDF267DE0EA002B7821 /* Vec4.hpp */,
+				40FBAFDF267DE0EA002B7821 /* Vec4.h */,
 				40FBAFEF26822094002B7821 /* Camera.cpp */,
-				40FBAFF026822094002B7821 /* Camera.hpp */,
+				40FBAFF026822094002B7821 /* Camera.h */,
+				409B8E9F2693581700C20D75 /* BasePrimitive.cpp */,
+				409B8EA02693581700C20D75 /* BasePrimitive.h */,
 			);
 			name = CPP;
 			sourceTree = "<group>";
@@ -264,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				409B8EA12693581700C20D75 /* BasePrimitive.cpp in Sources */,
 				40FBAFE3267DE0EA002B7821 /* Vec4.cpp in Sources */,
 				AADE2ABC25BF29F200BDC991 /* ReminderListViewController.swift in Sources */,
 				40FBAFF326823456002B7821 /* Shaders.metal in Sources */,
