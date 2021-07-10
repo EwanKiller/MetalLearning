@@ -47,7 +47,8 @@
         }
         _commandQueue = [_device newCommandQueue];
         
-        Cube cube(Vec3(0.0f, 0.0f, 0.0f), 400.0f);
+        //Cube cube(Vec3(0.0f, 0.0f, 0.0f), 400.0f);
+        Sphere sphere(Vec3(0.0f, 0.0f, 0.0f), 100.0f, 16);
         
 //        static const Vertex triangleVertices[] =
 //        {
@@ -77,8 +78,10 @@
 //
 //        _indicesBuffer = [_device newBufferWithBytes:indices length:sizeof(indices) options:MTLResourceStorageModeShared];
         
-        _vertexBuffer = [_device newBufferWithBytes:cube.vertices length:sizeof(cube.vertices) options:MTLStorageModeShared];
-        _indicesBuffer = [_device newBufferWithBytes:cube.indices length:sizeof(cube.indices) options:MTLResourceStorageModeShared];
+//        _vertexBuffer = [_device newBufferWithBytes:cube.vertices length:sizeof(cube.vertices) options:MTLStorageModeShared];
+//        _indicesBuffer = [_device newBufferWithBytes:cube.indices length:sizeof(cube.indices) options:MTLResourceStorageModeShared];
+        _vertexBuffer = [_device newBufferWithBytes:sphere.vertices length:sizeof(sphere.vertices) options:MTLStorageModeShared];
+        _indicesBuffer = [_device newBufferWithBytes:sphere.indices length:sizeof(sphere.indices) options:MTLResourceStorageModeShared];
         _uniformBuffer = [_device newBufferWithLength:sizeof(Uniforms) options:MTLResourceStorageModeShared];
         _scale = 1.0f;
         
@@ -102,7 +105,8 @@
         [commandEncoder setVertexBuffer:_vertexBuffer offset:0 atIndex:VertexInputIndexVertices];
         [commandEncoder setVertexBuffer:_indicesBuffer offset:0 atIndex:VertextInputIndexIndices];
         [commandEncoder setVertexBuffer:_uniformBuffer offset:0 atIndex:VertexInputIndexUniforms];
-        [commandEncoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle indexCount:36 indexType:MTLIndexTypeUInt16 indexBuffer:_indicesBuffer indexBufferOffset:0];
+        NSUInteger count = 16 * 16 * 6;
+        [commandEncoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle indexCount:count indexType:MTLIndexTypeUInt16 indexBuffer:_indicesBuffer indexBufferOffset:0];
         [commandEncoder endEncoding];
         [commandBuffer presentDrawable:view.currentDrawable];
     }

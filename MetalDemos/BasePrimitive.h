@@ -12,6 +12,7 @@
 #include <simd/simd.h>
 #include <MacTypes.h>
 #include "ShaderTypes.h"
+#include <vector>
 
 
 class Cube
@@ -23,6 +24,17 @@ public:
     
     Vertex vertices[8];
     UInt16 indices[36];
+};
+
+class Sphere
+{
+public:
+    Sphere() = delete;
+    Sphere(Vec3 center, float radius, int segments);
+    ~Sphere() = default;
+    
+    Vertex vertices[1024];
+    UInt16 indices[6144];
 };
 
 #endif /* BasePrimitive_h */
