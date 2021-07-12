@@ -17,8 +17,10 @@
     id<MTLCommandQueue> _commandQueue;
     id<MTLRenderPipelineState> _renderPipelineState;
     vector_uint2 _viewportSize;
-    id<MTLBuffer> _vertexBuffer;
-    id<MTLBuffer> _indicesBuffer;
+    id<MTLBuffer> _vertexBufferForCube;
+    id<MTLBuffer> _vertexBufferForSphere;
+    id<MTLBuffer> _indicesBufferForCube;
+    id<MTLBuffer> _indicesBufferForSphere;
     id<MTLBuffer> _uniformBuffer;
     Uniforms *uniform;
     Camera* camera;
@@ -37,7 +39,7 @@
         id<MTLFunction> vertexFunction = [defaultLibrary newFunctionWithName:@"vertexShader"];
         id<MTLFunction> fragmentFunction = [defaultLibrary newFunctionWithName:@"fragmentShader"];
         MTLRenderPipelineDescriptor* pipelineDescriptor = [[MTLRenderPipelineDescriptor alloc] init];
-        pipelineDescriptor.label = @"draw a 3D Cube";
+        pipelineDescriptor.label = @"Pipeline Descriptor";
         pipelineDescriptor.vertexFunction = vertexFunction;
         pipelineDescriptor.fragmentFunction = fragmentFunction;
         pipelineDescriptor.colorAttachments[0].pixelFormat = view.colorPixelFormat;
@@ -47,8 +49,8 @@
         }
         _commandQueue = [_device newCommandQueue];
         
-        //Cube cube(Vec3(0.0f, 0.0f, 0.0f), 400.0f);
-        Sphere sphere(Vec3(0.0f, 0.0f, 0.0f), 100.0f, 16);
+//        Cube cube(Vec3(0.0f, 0.0f, 0.0f), 400.0f);
+//        Sphere sphere(Vec3(0.0f, 0.0f, 0.0f), 100.0f, 16);
         
 //        static const Vertex triangleVertices[] =
 //        {
@@ -78,10 +80,13 @@
 //
 //        _indicesBuffer = [_device newBufferWithBytes:indices length:sizeof(indices) options:MTLResourceStorageModeShared];
         
-//        _vertexBuffer = [_device newBufferWithBytes:cube.vertices length:sizeof(cube.vertices) options:MTLStorageModeShared];
-//        _indicesBuffer = [_device newBufferWithBytes:cube.indices length:sizeof(cube.indices) options:MTLResourceStorageModeShared];
-        _vertexBuffer = [_device newBufferWithBytes:sphere.vertices length:sizeof(sphere.vertices) options:MTLStorageModeShared];
-        _indicesBuffer = [_device newBufferWithBytes:sphere.indices length:sizeof(sphere.indices) options:MTLResourceStorageModeShared];
+        Cube cube(Vec3(300.0f, 0.0f, 0.0f), 400.0f);
+        Sphere sphere(Vec3(0.0f, 0.0f, 0.0f), 100.0f, 16);
+        
+        _vertexBufferForCube = [_device newBufferWithBytes:cube.vertices length:sizeof(cube.vertices) options:MTLStorageModeShared];
+        _indicesBufferForCube = [_device newBufferWithBytes:cube.indices length:sizeof(cube.indices) options:MTLResourceStorageModeShared];
+        _vertexBufferForSphere = [_device newBufferWithBytes:sphere.vertices length:sizeof(sphere.vertices) options:MTLStorageModeShared];
+        _indicesBufferForSphere = [_device newBufferWithBytes:sphere.indices length:sizeof(sphere.indices) options:MTLResourceStorageModeShared];
         _uniformBuffer = [_device newBufferWithLength:sizeof(Uniforms) options:MTLResourceStorageModeShared];
         _scale = 1.0f;
         
@@ -91,8 +96,6 @@
 }
 -(void)drawInMTKView:(MTKView *)view
 {
-    [self updateMVPMatrix];
-    
     id<MTLCommandBuffer> commandBuffer = [_commandQueue commandBuffer];
     commandBuffer.label = @"TransformSceneCommandBuffer";
     MTLRenderPassDescriptor *renderPassDescripter = view.currentRenderPassDescriptor;
@@ -102,15 +105,24 @@
         [commandEncoder setFrontFacingWinding:MTLWindingClockwise];
         [commandEncoder setCullMode:MTLCullModeBack];
         [commandEncoder setRenderPipelineState:_renderPipelineState];
-        [commandEncoder setVertexBuffer:_vertexBuffer offset:0 atIndex:VertexInputIndexVertices];
-        [commandEncoder setVertexBuffer:_indicesBuffer offset:0 atIndex:VertextInputIndexIndices];
         [commandEncoder setVertexBuffer:_uniformBuffer offset:0 atIndex:VertexInputIndexUniforms];
+        
+        [commandEncoder setVertexBuffer:_vertexBufferForSphere offset:0 atIndex:VertexInputIndexVertices];
+        [commandEncoder setVertexBuffer:_indicesBufferForSphere offset:0 atIndex:VertextInputIndexIndices];
         NSUInteger count = 16 * 16 * 6;
-        [commandEncoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle indexCount:count indexType:MTLIndexTypeUInt16 indexBuffer:_indicesBuffer indexBufferOffset:0];
+        [commandEncoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle indexCount:count indexType:MTLIndexTypeUInt16 indexBuffer:_indicesBufferForSphere indexBufferOffset:0];
+        
+        [commandEncoder setVertexBuffer:_vertexBufferForCube offset:0 atIndex:VertexInputIndexVertices];
+        [commandEncoder setVertexBuffer:_indicesBufferForCube offset:0 atIndex:VertextInputIndexIndices];
+        [commandEncoder drawIndexedPrimitives:MTLPrimitiveTypeTriangle indexCount:36 indexType:MTLIndexTypeUInt16 indexBuffer:_indicesBufferForCube indexBufferOffset:0];
+        
         [commandEncoder endEncoding];
         [commandBuffer presentDrawable:view.currentDrawable];
     }
     [commandBuffer commit];
+    
+    [self updateMVPMatrix];
+
 }
 
 -(void)mtkView:(MTKView *)view drawableSizeWillChange:(CGSize)size
